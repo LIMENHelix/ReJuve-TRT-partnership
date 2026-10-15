@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#141a26">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Rejuv Men's Health + Wellness — Partnership &amp; Growth Sheet</title>
+<style>
+  :root{
+    --ink:#16181d; --sub:#5b6472; --line:#e2e6ec; --bg:#f7f8fa; --card:#ffffff;
+    --accent:#1f5fd6; --good:#1a7f4b; --warn:#b45309;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--ink); line-height:1.5;}
+  .wrap{max-width:1100px; margin:0 auto; padding:24px 20px 80px;}
+  header.top{background:linear-gradient(135deg,#141a26,#1f2c47); color:#fff; border-radius:14px; padding:28px 28px 24px; margin-bottom:20px;}
+  header.top h1{font-size:24px; font-weight:700; letter-spacing:.2px;}
+  header.top p{color:#c4cede; font-size:14px; margin-top:6px; max-width:760px;}
+  .badge{display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:12px; padding:3px 10px; border-radius:999px; margin-bottom:12px;}
+  nav{position:sticky; top:0; z-index:10; background:rgba(247,248,250,.92); backdrop-filter:blur(6px); display:flex; gap:8px; flex-wrap:wrap; padding:10px 0; margin-bottom:16px;}
+  nav a{font-size:13px; color:var(--sub); text-decoration:none; border:1px solid var(--line); background:#fff; padding:6px 12px; border-radius:999px;}
+  nav a:hover{color:var(--ink); border-color:#b9c2cf;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:20px;}
+  h2{font-size:19px; font-weight:700; margin-bottom:4px;}
+  h2 .num{color:var(--accent); font-weight:700; margin-right:6px;}
+  .lede{font-size:14px; color:var(--sub); margin-bottom:16px; max-width:820px;}
+  h3{font-size:14px; text-transform:uppercase; letter-spacing:.6px; color:var(--sub); margin:18px 0 10px;}
+  .grid{display:grid; gap:14px;}
+  .grid.in{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));}
+  .grid.stats{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  label{display:block; font-size:12.5px; color:var(--sub); margin-bottom:3px;}
+  input[type=number], input[type=text], input[type=email]{width:100%; padding:8px 10px; border:1px solid #cfd6e0; border-radius:8px; font-size:14px; background:#fff; color:var(--ink);}
+  input:focus{outline:2px solid var(--accent); outline-offset:0; border-color:var(--accent);}
+  .stat{border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:#fbfcfe;}
+  .stat .v{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums;}
+  .stat .k{font-size:12px; color:var(--sub); margin-top:2px;}
+  .pos{color:var(--good);} .neg{color:#b3261e;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th,td{padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  th{font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--sub); font-weight:600;}
+  td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
+  tr:last-child td{border-bottom:none;}
+  .pill{display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:999px; border:1px solid var(--line); color:var(--sub); white-space:nowrap;}
+  .pill.p1{background:#e8f0fe; color:#1a56c4; border-color:#c4d7fa;}
+  .pill.p2{background:#fdf1e3; color:#9a5b13; border-color:#f3d9b6;}
+  .flow{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; counter-reset:step;}
+  .step{border:1px solid var(--line); border-radius:10px; padding:12px; position:relative;}
+  .step::before{counter-increment:step; content:counter(step); display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; font-size:12px; font-weight:700; margin-bottom:8px;}
+  .step b{display:block; font-size:13.5px; margin-bottom:3px;}
+  .step span{font-size:12.5px; color:var(--sub);}
+  ul.tight{margin:6px 0 0 18px; font-size:13.5px;}
+  ul.tight li{margin-bottom:4px;}
+  .svc{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;}
+  .svc .card{border:1px solid var(--line); border-radius:10px; padding:12px 14px;}
+  .svc .card b{font-size:14px;}
+  .svc .card p{font-size:12.5px; color:var(--sub); margin-top:3px;}
+  .btn{display:inline-block; background:var(--ink); color:#fff; border:none; font-size:14px; font-weight:600; padding:11px 18px; border-radius:10px; cursor:pointer;}
+  .btn.alt{background:#fff; color:var(--ink); border:1px solid #b9c2cf;}
+  .btn:hover{opacity:.88;}
+  .rowbtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  textarea{width:100%; min-height:220px; padding:10px 12px; border:1px solid #cfd6e0; border-radius:10px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.55; margin-top:14px;}
+  .note{font-size:12.5px; color:var(--sub); background:#f2f5f9; border:1px solid var(--line); border-radius:8px; padding:9px 12px; margin-top:12px;}
+  .savemsg{font-size:12px; color:var(--good); margin-left:10px;}
+  svg text{font-family:inherit;}
+  .tblwrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .charts{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:720px){
+    .wrap{padding:12px 10px 60px;}
+    header.top{padding:20px 16px; border-radius:12px;}
+    header.top h1{font-size:19px;}
+    header.top p{font-size:13px;}
+    nav{flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px;}
+    nav a{white-space:nowrap; flex:0 0 auto;}
+    section{padding:16px 14px; border-radius:12px;}
+    h2{font-size:17px;}
+    .lede{font-size:13px;}
+    .grid.in{grid-template-columns:1fr 1fr;}
+    .grid.stats{grid-template-columns:repeat(2,1fr);}
+    .charts{grid-template-columns:1fr;}
+    .svc{grid-template-columns:1fr;}
+    #trigList{grid-template-columns:1fr !important;}
+    .stat .v{font-size:18px;}
+    .tblwrap table{min-width:540px;}
+    .flow{grid-template-columns:1fr;}
+    .rowbtns{flex-direction:column;}
+    th, td{padding:8px;}
+    input[type=number], input[type=text], input[type=email]{font-size:16px;}
+  }
+  @media print{ nav,.rowbtns,textarea{display:none;} body{background:#fff;} section{break-inside:avoid;} }
+</style>
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="badge">Partnership working sheet · fill in, then send back</div>
+  <h1>Rejuv Men's Health + Wellness — Growth &amp; Profitability Plan</h1>
+  <p>645 State Rte 92, Kearney, MO · Chris Hubbel (non-clinical growth partner) with the clinical leadership team.
+  This sheet has three jobs: (1) agree on the operating numbers, (2) pick a compensation structure for the growth role, and (3) sign off on the outreach, app, and service expansion. Everything you type is saved in this browser and can be emailed back in one click.</p>
+  <p style="margin-top:10px; font-size:13px;">Send results to:
+    <input type="email" id="chrisEmail" placeholder="chris@youremail.com" style="max-width:260px; margin-left:6px; color:#16181d;">
+    <span class="savemsg" id="saveMsg">saved</span></p>
+</header>
+
+<nav>
+  <a href="#numbers">1 · The numbers</a>
+  <a href="#comp">2 · Chris's compensation</a>
+  <a href="#outreach">3 · Outreach skeleton</a>
+  <a href="#consult">4 · Consult flow</a>
+  <a href="#app">5 · App roadmap</a>
+  <a href="#club">6 · The 645 Club</a>
+  <a href="#services">7 · Full wellness menu</a>
+  <a href="#scale">8 · Scale — site 2</a>
+  <a href="#sendback">9 · Send back</a>
+</nav>
+
+<!-- 1 · NUMBERS -->
+<section id="numbers">
+  <h2><span class="num">1</span>The numbers — fill in what you know, estimate the rest</h2>
+  <p class="lede">These drive everything in Section 2. Yellow-light items: replace estimates with real quotes (pharmacy, LabCorp/Quest, insurance) as they land. Your entries are remembered on this device.</p>
+
+  <h3>Revenue drivers</h3>
+  <div class="grid in">
+    <div><label>Avg monthly price per patient ($)</label><input type="number" id="price" value="249.92" step="0.01"></div>
+    <div><label>Add-on margin / patient-mo ($, ED · GLP-1 · PRP amortized)</label><input type="number" id="addon" value="40"></div>
+    <div><label>New patients/mo from Chris's outreach</label><input type="number" id="newC" value="12"></div>
+    <div><label>New patients/mo from existing Rejuv brand</label><input type="number" id="newR" value="6"></div>
+    <div><label>Monthly churn (%)</label><input type="number" id="churn" value="1.5" step="0.1"></div>
+    <div><label>Projection horizon (months)</label><input type="number" id="months" value="24"></div>
+  </div>
+
+  <h3>Costs</h3>
+  <div class="grid in">
+    <div><label>Variable cost / patient-mo ($ meds+labs+supplies)</label><input type="number" id="varCost" value="100"></div>
+    <div><label>Fixed costs / month (lean launch ≈ $14k; full-time NP ≈ $24.6k)</label><input type="number" id="fixed" value="14000"></div>
+    <div><label>Events budget / month ($ club nights, watch parties)</label><input type="number" id="eventsBudget" value="800"></div>
+    <div><label>Remaining startup outlay ($)</label><input type="number" id="outlay" value="80000"></div>
+  </div>
+  <div class="note">Lean launch assumed: NP on per-diem scheduled days until ~100 active patients, then flip to full-time (type 24600 into fixed costs to see the full-time scenario). Year 1 is the ramp — the keeps column turns strongly positive from year 2 as the patient base compounds.</div>
+  <div class="grid in" style="display:none;">
+  </div>
+
+  <h3>Results</h3>
+  <div class="grid stats">
+    <div class="stat"><div class="v" id="vP12">–</div><div class="k">active patients, month 12</div></div>
+    <div class="stat"><div class="v" id="vPend">–</div><div class="k">active patients, final month</div></div>
+    <div class="stat"><div class="v" id="vBE">–</div><div class="k">breakeven patients</div></div>
+    <div class="stat"><div class="v" id="vRev1">–</div><div class="k">year-1 revenue</div></div>
+    <div class="stat"><div class="v" id="vOp1">–</div><div class="k">year-1 operating profit</div></div>
+    <div class="stat"><div class="v" id="vCum">–</div><div class="k">cumulative cash at horizon (after outlay)</div></div>
+  </div>
+  <div style="margin-top:16px;">
+    <div style="font-size:13px; color:var(--sub); margin-bottom:4px;">Active patients over time (dashed line = breakeven)</div>
+    <svg id="chart" viewBox="0 0 640 200" width="100%" style="max-width:760px;"></svg>
+  </div>
+</section>
+
+<!-- 2 · COMPENSATION -->
+<section id="comp">
+  <h2><span class="num">2</span>Chris's compensation — three structures, compared live</h2>
+  <p class="lede">All three are modeled on the same clinic profit from Section 1, so you're choosing how to slice the same pie — not how big the pie is. Adjust any number; the comparison updates. A blend is also possible (e.g., small base + reduced bounty).</p>
+
+  <h3>Structure A · Base + profit share</h3>
+  <div class="grid in">
+    <div><label>Base ($/mo, for outreach &amp; ops management)</label><input type="number" id="baseA" value="3000"></div>
+    <div><label>Share of year-1 operating profit (%)</label><input type="number" id="shareA" value="15" step="0.5"></div>
+  </div>
+  <h3>Structure B · Channel bounty (pay-for-performance)</h3>
+  <div class="grid in">
+    <div><label>Bounty per enrollment from Chris's channels ($)</label><input type="number" id="bountyB" value="175"></div>
+    <div><label>Monthly residual per active Chris-channel patient ($)</label><input type="number" id="perMoB" value="25"></div>
+  </div>
+  <h3>Structure C · Equity / distribution</h3>
+  <div class="grid in">
+    <div><label>LLC membership interest to Chris (%)</label><input type="number" id="eqC" value="20" step="0.5"></div>
+    <div><label>Distributions paid (% of positive operating profit)</label><input type="number" id="distC" value="70"></div>
+  </div>
+
+  <h3>Structure D · Tiered performance plan — the self-funding anchor</h3>
+  <p class="lede">Chris's pay scales only after his channel has collected more revenue than it costs. Tier is set by his year-1 channel enrollments; every enrollment prices at the achieved tier. Every cell is editable — negotiate the sheet, not a hunch.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Tier</th><th>Goal — his Y1 enrollments</th><th>Base ($/mo)</th><th>Bounty ($/enroll)</th><th>Residual ($/active/mo)</th><th class="num">Chris Y1 comp at tier</th><th class="num">Clinic keeps (Y1)</th></tr></thead>
+    <tbody>
+      <tr id="tr1"><td><b>1 · Foundation</b></td><td>0 – <input type="number" id="t1max" value="30" style="width:60px"></td><td><input type="number" id="b1" value="1500" style="width:76px"></td><td><input type="number" id="bo1" value="150" style="width:64px"></td><td><input type="number" id="r1" value="0" style="width:56px"></td><td class="num" id="d1">–</td><td class="num" id="d1r">–</td></tr>
+      <tr id="tr2"><td><b>2 · Momentum</b></td><td><span id="t1minL">31</span> – <input type="number" id="t2max" value="75" style="width:60px"></td><td><input type="number" id="b2" value="1750" style="width:76px"></td><td><input type="number" id="bo2" value="175" style="width:64px"></td><td><input type="number" id="r2" value="10" style="width:56px"></td><td class="num" id="d2">–</td><td class="num" id="d2r">–</td></tr>
+      <tr id="tr3"><td><b>3 · Engine</b></td><td><span id="t2minL">76</span> +</td><td><input type="number" id="b3" value="2000" style="width:76px"></td><td><input type="number" id="bo3" value="200" style="width:64px"></td><td><input type="number" id="r3" value="15" style="width:56px"></td><td class="num" id="d3">–</td><td class="num" id="d3r">–</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">Quality gates at every tier — protects the clinic from paying for bad volume: monthly churn ≤ <input type="number" id="gateChurn" value="2" style="width:52px"> %, renewal rate ≥ <input type="number" id="gateRenew" value="70" style="width:52px"> %, clean compliance record. Miss a gate two straight quarters → tier drops one level. <span id="tierNowWrap">At the current model's numbers this plan lands in <b id="tierNow">–</b> — his channel collects <b id="tierRev">–</b> in year-1 revenue before any of this pay.</span></div>
+
+  <h3>Structure E · Retainer + tiers — the full growth-operator package</h3>
+  <p class="lede">Chris owns the entire non-clinical engine: SEO, website, social media, sales funnels, CRM, coordinators, events, and partnerships — everything except clinical, which stays with the providers (protocols, formulary, patient eligibility, and veto over all marketing claims). A monthly retainer covers the always-on operational scope; the Structure D tier pay rides on top as pure performance.</p>
+  <div class="grid in">
+    <div><label>Monthly marketing-ops retainer ($, market rate $3–8k for this scope)</label><input type="number" id="retE" value="4000"></div>
+  </div>
+  <ul class="tight" style="margin-top:10px;">
+    <li><b>In scope:</b> website + local SEO, Google Business Profile, social content engine, ad campaigns, funnels + CRM (HIPAA-BAA configured), intake automation, coordinators, events calendar, partner program, dashboard reporting.</li>
+    <li><b>Out of scope (providers):</b> all clinical decisions, claims/formulary, and marketing-claim approval. Ad spend is a pass-through budget Chris manages but doesn't profit from.</li>
+  </ul>
+  <div class="note"><b>The "if it were my business" answer:</b> no agency retainers — the agency stack for this scope runs $5–12k/mo ($60–145k/yr) with zero performance alignment. What an owner still funds: ad spend (pass-through), tools (~$300–600/mo), and task-rate freelance production (editing, design) so Chris's hours go to revenue work, not clip trimming. Structure E costs less than the agency alone — and half of it only exists on results.</div>
+
+  <h3>Side-by-side, year 1</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Structure</th><th class="num">Chris year-1 comp</th><th class="num">Practice keeps (Y1 op. profit)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><b>A</b> — Base + profit share</td><td class="num" id="cA">–</td><td class="num" id="rA">–</td><td>Predictable for Chris; practice pays base even in slow months.</td></tr>
+      <tr><td><b>B</b> — Channel bounty</td><td class="num" id="cB">–</td><td class="num" id="rB">–</td><td>Zero enrollments = near-zero cost; scales only with Chris-sourced revenue.</td></tr>
+      <tr><td><b>C</b> — Equity / distributions</td><td class="num" id="cC">–</td><td class="num" id="rC">–</td><td>Aligns long-term; Chris earns only when the LLC is profitable.</td></tr>
+      <tr><td><b>D</b> — Tiered performance plan</td><td class="num" id="cD">–</td><td class="num" id="rD">–</td><td>Self-funding: each tier unlocks only after his channel has out-earned its cost. Recommended anchor — every cell negotiable in the table above.</td></tr>
+      <tr><td><b>E</b> — Retainer + tiers (full growth ops)</td><td class="num" id="cE">–</td><td class="num" id="rE">–</td><td>The complete package: retainer covers the always-on marketing engine; D-tier pay rides on top for performance. E = retainer × 12 + Structure D at achieved tier.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">Legal note for counsel (not tax advice): percentage-of-revenue marketing arrangements can raise fee-splitting questions even in cash-pay models; a flat marketing-services fee or equity distribution is generally cleaner. Have the healthcare attorney bless the final structure before signing.</div>
+</section>
+
+<!-- 3 · OUTREACH -->
+<section id="outreach">
+  <h2><span class="num">3</span>Outreach skeleton — channels, mechanics, and KPIs</h2>
+  <p class="lede">Check the boxes you approve. Every channel uses a tracked code so Structure B (and the dashboard) can attribute enrollments. Co-marketing arrangements are flat-fee or event-based — <b>no per-referral payments</b> until counsel signs off.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="width:36px;"></th><th>Channel</th><th>Mechanic / offer</th><th>Primary KPI</th></tr></thead>
+    <tbody id="chanBody"></tbody>
+  </table></div>
+  <p style="font-size:12.5px; color:var(--sub); margin-top:8px;"><span id="chanCount">0</span> channels approved</p>
+
+  <h3>Signature programs</h3>
+  <ul class="tight">
+    <li><b>First-responder enrollment</b> — HSA-funded plans for police, fire, EMS; <b>free on-site hormone screening</b> (own centrifuge + waived analyzer; CLIA Certificate of Waiver pending) as the front door. Screening only — confirmatory reference-lab draw before any diagnosis. Baseline and 3–6 month check-ins with a 1–10 stress/job-duty score.</li>
+    <li><b>6-week shred contest</b> — run through Club 7 and partner gyms: team weigh-ins at the gym, lab-screening day at 645, winner gets enrollment credit. Weight-loss framing stays diagnosis-based for HSA eligibility.</li>
+    <li><b>Joint clinic nights</b> — PRP education + live Q&amp;A with the DO, co-hosted with chiropractors and PTs; screening ultrasound demos if available.</li>
+    <li><b>Performance Partner program</b> — tiered partnerships with trainers, chiropractors, and PTs: quarterly education nights (hormones, red flags, when to refer), screening vouchers for their clients, co-branded challenges, tracked channel codes. Flat co-marketing or value-in-kind only — no per-referral payments.</li>
+    <li><b>Rejuv Longevity program</b> — quarterly deep panels (lipids incl. ApoB, A1c, hsCRP, hormones), body-comp and grip-strength metrics, sleep/nutrition coaching in the app, provider-reviewed healthspan score. Cash-pay add-on; claims stay in healthspan/metabolic-health vocabulary — no anti-aging or enhancement language, no unapproved compounds.</li>
+    <li><b>Lab-screening days</b> — $100 panels (already in the pricing model) as the low-friction front door for every channel; waived on-site tests return results same day at the event — that speed is the conversion weapon.</li>
+  </ul>
+</section>
+
+<!-- 4 · CONSULT FLOW -->
+<section id="consult">
+  <h2><span class="num">4</span>What the patient journey looks like — with Chris on Zoom</h2>
+  <p class="lede">Chris handles every non-clinical touch so providers spend their time on medicine. Channel attribution is captured at step 1.</p>
+  <div class="flow">
+    <div class="step"><b>Lead → Zoom with Chris</b><span>15–20 min. Goals, symptoms education, how cash-pay works, HSA/FSA eligibility, financing options. No medical advice — pure enrollment consult.</span></div>
+    <div class="step"><b>Intake + labs</b><span>Web intake form, then draw at 645 — on-site waived screening where available (same-day result), reference-lab order for confirmatory panels. $100 panel fee if not enrolling; free screening for first responders.</span></div>
+    <div class="step"><b>Provider visit</b><span>DO/NP exam, diagnosis, protocol, prescriptions. Full health panel reviewed; cholesterol meds prescribed if indicated; PRP consult offered for joint candidates.</span></div>
+    <div class="step"><b>Enrollment</b><span>12-month plan (or month-to-month) on the treatment-plan form with all refund/cancellation terms in writing. 0% simple-interest financing as default.</span></div>
+    <div class="step"><b>App onboarding</b><span>Notifications on, macros set, first check-in scheduled. Chris's team owns renewals, streaks, and win-backs.</span></div>
+  </div>
+  <h3>Chris's Zoom consult agenda (template)</h3>
+  <ul class="tight">
+    <li>2 min — rapport, how they heard about us (channel code logged)</li>
+    <li>5 min — their goals: energy, strength, weight, libido, sleep; education on what TRT/weight-loss/peptide-adjacent care can and can't do</li>
+    <li>4 min — pricing, plan terms, what's included (labs, provider access, app)</li>
+    <li>3 min — HSA/FSA rules and financing options (never say "interest-free" on deferred-interest products)</li>
+    <li>2 min — book labs + provider visit; confirmation text/email same day</li>
+  </ul>
+</section>
+
+<!-- 5 · APP -->
+<section id="app">
+  <h2><span class="num">5</span>App roadmap — from TRT reminders to full wellness hub</h2>
+  <p class="lede">Tag each feature Phase 1 (launch) or Phase 2 (post-breakeven). Phase 1 can be a white-label patient app + the existing stack; Phase 2 justifies a custom build once member count supports it.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="width:36px;"></th><th>Feature</th><th>What it does</th><th style="width:150px;">Phase</th></tr></thead>
+    <tbody id="appBody"></tbody>
+  </table></div>
+</section>
+
+<!-- 6 · THE CLUB -->
+<section id="club">
+  <h2><span class="num">6</span>The 645 Club — events, education, and buzz</h2>
+  <p class="lede">Gameday in Liberty sells a clinical visit with man-cave decor. The moat here is a real club — and it's bigger than it first looked: our own sports complex (3–4 full basketball courts, hitting cages, gym floor) plus Club 7 at our door. Leagues, camps, and watch parties turn 645 into the default third place for men in the northland. You can't out-franchise a 400-unit chain on clinical sameness — you out-local it on belonging. Events convert guests into free screenings; the app keeps them between events.</p>
+
+  <h3>The sports-complex playbook — courts, cages, gym floor (our facility)</h3>
+  <div class="flow">
+    <div class="step"><b>Weekly · Basketball runs &amp; league nights</b><span>Men's leagues on our courts — free for enrolled members, screening booth at the door. One screened player ≈ a $3k/yr patient: the courts are a CAC machine priced at cost, not a profit center.</span></div>
+    <div class="step"><b>Monthly · Fight-night watch parties</b><span>UFC/boxing on the courts, big screen, app leaderboard callouts. Sponsor-funded food and drinks.</span></div>
+    <div class="step"><b>6-week shred bootcamp</b><span>Weekly bootcamp on the gym floor; finals night on the courts — weigh-ins, leaderboard reveal, enrollment credit for winners.</span></div>
+    <div class="step"><b>Monthly · Dad Day</b><span>Kids' workouts + dads train side by side. The family-trust builder spouses remember.</span></div>
+    <div class="step"><b>Quarterly · Man Day + championship weekend</b><span>League tournament + vendor row + tastings + screening booth + local radio remote. The buzz engine.</span></div>
+  </div>
+  <div class="flow" style="margin-top:10px;">
+    <div class="step"><b>Quarterly · Speaker night</b><span>Motivational speakers, former athletes, first-responder leaders. Every talk becomes app modules and clips — content that sells while we sleep.</span></div>
+    <div class="step"><b>Seasonal · Weight-loss camp</b><span>Multi-week camp pairing training + nutrition coaching with the GLP-1 program. Modest fee, massive retention glue.</span></div>
+    <div class="step"><b>Seasonal · First-responder tournament</b><span>Police/fire basketball or hitting-cage challenge with a fundraiser angle — local press guaranteed. The flagship of the first-responder program.</span></div>
+    <div class="step"><b>Hitting-cage socials</b><span>Batting practice nights and skills clinics — a different crowd than the court regulars, another door into the funnel.</span></div>
+    <div class="step"><b>Monthly · 645 Club Night (offsite)</b><span>The cigar/whiskey private-room night stays — counterweight programming, and where partnerships get made.</span></div>
+  </div>
+  <div class="note"><b>League &amp; camp guardrails:</b> athletic programming registers under the club brand (never the clinic) with participant waivers; youth activities (Dad Day) use background-checked staff and separate insurance; confirm facility liability coverage extends to leagues/camps before the first tip-off.</div>
+
+  <h3>House rules — keeps the fun defensible</h3>
+  <ul class="tight">
+    <li>Social lives off the clinical brand: "The 645 Club" is its own name and DBA. Event rosters stay separate from patient records — no health talk, no patient info at events (HIPAA hygiene).</li>
+    <li>Alcohol and cigars happen offsite or venue-permitted only — never served at the clinic. Check lease and liability coverage before anything on-site.</li>
+    <li>Guests are the funnel: every guest gets a free screening voucher and an app download. RSVPs are opt-in marketing contacts.</li>
+    <li>Segment the lists: cigar/whiskey programming and weight-loss programming never cross-promote to the same members.</li>
+    <li>No health claims or testimonials at events without counsel-approved language (Missouri advertising rules still unverified).</li>
+  </ul>
+
+  <h3>Buzz mechanics</h3>
+  <ul class="tight">
+    <li>Every event produces content: 5–10 short clips, member spotlights (signed releases), leaderboard moments.</li>
+    <li>Local sponsors cover costs once the calendar has traction — steakhouse, barber, supplement shop, truck club, gym. Exposure for them, near-zero cost for us, and still no per-referral payments.</li>
+    <li>App challenges feed the events: quiz points and streaks qualify members for VIP access and guest passes.</li>
+    <li>15 minutes from Gameday cuts both ways — the club has to be worth the drive. Identity and exclusivity ("the northland men's club") are what pull people past a closer option.</li>
+  </ul>
+  <div class="note">Events budget is an input in Section 1 (default $800/mo — roughly one club night plus content). Sponsor offsets can take it near zero once the calendar is established.</div>
+</section>
+
+<!-- 7 · SERVICES -->
+<section id="services">
+  <h2><span class="num">7</span>Full men's health &amp; wellness menu</h2>
+  <p class="lede">Clinical scope confirmed by the providers: full panels, prescription management, and PRP. Peptides stay off the menu until FDA listings and counsel confirm in writing.</p>
+  <div class="svc">
+    <div class="card"><b>Core TRT</b><p>Testosterone cypionate with AUA-aligned monitoring; hematocrit as the safety gate.</p></div>
+    <div class="card"><b>Full health panels</b><p>CBC, CMP, lipids, A1c, thyroid, PSA, vitamin D — reviewed at every provider visit, trended in the app.</p></div>
+    <div class="card"><b>Cholesterol &amp; lipids</b><p>Prescribed statins/other lipid meds when indicated, tracked against panel trends. Insurance-transferable documentation.</p></div>
+    <div class="card"><b>PRP joint injections</b><p>Knees, shoulders, hips — cash add-on, provider-administered. Feeds the chiro/trainer referral loop.</p></div>
+    <div class="card"><b>Medical weight loss</b><p>Branded GLP-1s only (Zepbound/Mounjaro) — no compounded tirzepatide. Pairs with shred contests.</p></div>
+    <div class="card"><b>ED program</b><p>Sildenafil/tadalafil with follow-up adherence tracking.</p></div>
+    <div class="card"><b>NAD+ / B12</b><p>Add-on injectables, contingent on compliant pharmacy sourcing confirmation.</p></div>
+    <div class="card"><b>Rejuv Longevity program</b><p>Quarterly deep panels, body-comp + strength metrics, sleep/nutrition coaching, provider-reviewed healthspan score. Cash-pay add-on; built entirely on diagnostics and diagnosed-condition care — no unapproved compounds, no enhancement claims.</p></div>
+    <div class="card"><b>Peptides (deferred)</b><p>Sermorelin/BPC-157/ipamorelin gated on FDA 503A listing + written counsel sign-off. Not at launch.</p></div>
+  </div>
+</section>
+
+<!-- 8 · SCALE -->
+<section id="scale">
+  <h2><span class="num">8</span>Scale — the second location</h2>
+  <p class="lede">Site 2 is a trigger, not a date. The playbook transfers only after site 1 proves it — and the cheapest way to de-risk expansion is to sell into the next market before signing anything: run 645 Club events and screening days there for 2–3 months, capture channel-coded leads, and sign the lease only when the leads say the market is real.</p>
+
+  <h3>Launch triggers — all seven boxes checked first</h3>
+  <div id="trigList" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:6px 20px; font-size:13.5px;"></div>
+  <p style="font-size:12.5px; color:var(--sub); margin-top:6px;"><span id="trigCount">0</span> of 7 triggers met</p>
+
+  <h3>Where — candidate markets (pull ACS B01001/B19013 before deciding)</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Market</th><th>Drive from 645</th><th>Competition found</th><th>Fit / note</th></tr></thead>
+    <tbody>
+      <tr><td><b>Liberty</b></td><td>15 min</td><td>Gameday (franchise) + Renew Vitality corridor</td><td>Highest upside, hardest fight — our members already live and train here. Site 3: beat them with the club, not ads.</td></tr>
+      <tr><td><b>Gladstone</b></td><td>20 min</td><td>None dedicated found — verify</td><td>Dense suburb, strong first-responder base. Verify with ACS.</td></tr>
+      <tr><td><b>Smithville</b></td><td>25 min</td><td>None found — verify</td><td>Fast-growing, higher-income lake community. Site 2 candidate.</td></tr>
+      <tr><td><b>Platte City</b></td><td>20 min</td><td>None found — verify</td><td>County seat: sheriff, fire, courthouse employees — the first-responder playbook transfers directly. Site 2 candidate.</td></tr>
+      <tr><td><b>Excelsior Springs</b></td><td>25 min</td><td>None found — verify</td><td>Older demo, wellness-tourism history. Verify.</td></tr>
+      <tr><td><b>Cameron</b></td><td>35 min</td><td>None found — verify</td><td>I-35 corridor, broader catchment. Stretch option.</td></tr>
+      <tr><td><b>Columbia / Springfield</b></td><td>~2 hrs</td><td>Jump markets</td><td>Phase 3 — needs its own provider team and MSO-style structure.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note">Play: satellite before head-to-head. Site 2 = Smithville or Platte City (underserved, 20–25 min, club events bridge both towns). Liberty/Gladstone is site 3 — fight Gameday on their turf only after the playbook has won once more.</div>
+
+  <h3>What transfers vs. what gets rebuilt</h3>
+  <div class="flow">
+    <div class="step"><b>Transfers (nearly free)</b><span>Brand + 645 Club playbook · shred challenges · screening-day kit · Zoom-with-Chris consult script · financing + HSA stack · app + education content · sponsor model · content engine</span></div>
+    <div class="step"><b>Rebuilt per site (real money)</b><span>Lease + build-out · BNDD + DEA registration at the new address · CLIA waiver per site · local Performance Partners · local channel codes · NP coverage + CPA for that market</span></div>
+  </div>
+
+  <h3>Site-2 economics (same price &amp; variable cost as Section 1)</h3>
+  <div class="grid in">
+    <div><label>Site-2 startup outlay ($ lean build-out + equipment)</label><input type="number" id="outlay2" value="60000"></div>
+    <div><label>Site-2 fixed + events / month ($)</label><input type="number" id="fixed2" value="14000"></div>
+    <div><label>Site-2 new patients/mo — Chris channels</label><input type="number" id="newC2" value="10"></div>
+    <div><label>Site-2 new patients/mo — brand carryover</label><input type="number" id="newR2" value="4"></div>
+    <div><label>Site-2 monthly churn (%)</label><input type="number" id="churn2" value="1.5" step="0.1"></div>
+    <div><label>Chris site-2 year-1 comp ($ Structure D restarts at Tier 1)</label><input type="number" id="comp2" value="40000"></div>
+  </div>
+  <div class="grid stats" style="margin-top:14px;">
+    <div class="stat"><div class="v" id="v2P12">–</div><div class="k">site-2 active patients, month 12</div></div>
+    <div class="stat"><div class="v" id="v2BE">–</div><div class="k">site-2 breakeven patients</div></div>
+    <div class="stat"><div class="v" id="v2Op1">–</div><div class="k">site-2 Y1 op profit after Chris comp</div></div>
+    <div class="stat"><div class="v" id="v2Pay">–</div><div class="k">site-2 outlay payback</div></div>
+  </div>
+  <div class="note">The pitch: site 2 costs less and breaks even faster than site 1 did — the model, equipment, content, and sponsor network already exist. Chris's comp only scales after that site out-earns it, same structure as here. The playbook is portable because he is.</div>
+</section>
+
+<!-- 9 · SEND BACK -->
+<section id="sendback">
+  <h2><span class="num">9</span>Send it back</h2>
+  <p class="lede">One click builds a summary of every input, result, and approval — copy it or open a pre-addressed email to Chris.</p>
+  <div class="rowbtns">
+    <button class="btn" id="btnCopy">Copy results summary</button>
+    <button class="btn alt" id="btnMail">Open email to Chris</button>
+    <span class="savemsg" id="copyMsg"></span>
+  </div>
+  <textarea id="summary" readonly placeholder="Summary appears here…"></textarea>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function num(id){ var v = parseFloat($(id).value); return isNaN(v) ? 0 : v; }
+  function setText(id, t){ $(id).textContent = t; }
+  function money(n){
+    var neg = n < 0, a = Math.abs(n);
+    var s = a >= 1000 ? (a/1000).toFixed(a >= 100000 ? 0 : 1) + "k" : a.toFixed(0);
+    return (neg ? "-$" : "$") + s;
+  }
+  function full(n){ return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US"); }
+  function int(n){ return Math.round(n).toLocaleString("en-US"); }
+
+  /* ---------- persistence ---------- */
+  var FIELDS = ["price","addon","newC","newR","churn","months","varCost","fixed","eventsBudget","outlay",
+                "baseA","shareA","bountyB","perMoB","eqC","distC","chrisEmail",
+                "t1max","t2max","b1","bo1","r1","b2","bo2","r2","b3","bo3","r3","gateChurn","gateRenew",
+                "outlay2","fixed2","newC2","newR2","churn2","comp2","retE"];
+  function save(){
+    var d = {};
+    FIELDS.forEach(function(f){ d[f] = $(f).value; });
+    d._ch = window.__chanState; d._app = window.__appState; d._trig = window.__trigState;
+    try{ localStorage.setItem("rejuvSheet", JSON.stringify(d)); }catch(e){}
+    var m = $("saveMsg"); m.textContent = "saved"; setTimeout(function(){ m.textContent = ""; }, 1200);
+  }
+  function load(){
+    var d = null;
+    try{ d = JSON.parse(localStorage.getItem("rejuvSheet")); }catch(e){}
+    if(!d) return;
+    FIELDS.forEach(function(f){ if(d[f] !== undefined && d[f] !== "") $(f).value = d[f]; });
+    window.__chanState = d._ch || {}; window.__appState = d._app || {}; window.__trigState = d._trig || {};
+  }
+
+  /* ---------- model ---------- */
+  function model(){
+    var price = num("price"), addon = num("addon"), newC = num("newC"), newR = num("newR");
+    var churn = num("churn")/100, M = Math.max(6, Math.min(60, Math.round(num("months"))));
+    var varC = num("varCost"), F = num("fixed") + num("eventsBudget"), outlay = num("outlay");
+    var contrib = price + addon - varC;
+    var p = 0, k = 0, P = [], K = [], op1 = 0, rev1 = 0, sumK1 = 0, cum = -outlay;
+    for(var t = 1; t <= M; t++){
+      p = p*(1-churn) + newC + newR; P.push(p);
+      k = k*(1-churn) + newC; K.push(k);
+      var op = p*contrib - F; cum += op;
+      if(t <= 12){ op1 += op; rev1 += p*price; sumK1 += k; }
+    }
+    var BE = contrib > 0 ? F/contrib : Infinity;
+    return {P:P, K:K, M:M, F:F, BE:BE, op1:op1, rev1:rev1, sumK1:sumK1,
+            p12:P[11] || P[P.length-1], pend:P[P.length-1], cum:cum, contrib:contrib};
+  }
+
+  function site2(){
+    var contrib2 = num("price") + num("addon") - num("varCost");
+    var F2 = num("fixed2"), out2 = num("outlay2");
+    var n2 = num("newC2") + num("newR2"), c2 = num("churn2")/100;
+    var M = Math.max(6, Math.min(60, Math.round(num("months"))));
+    var p = 0, cum = -out2, op1 = 0, beM = null, pb = null, p12v = 0;
+    for(var t = 1; t <= M; t++){
+      p = p*(1-c2) + n2;
+      var op = p*contrib2 - F2; cum += op;
+      if(t <= 12){ op1 += op; if(t === 12) p12v = p; }
+      if(beM === null && op > 0) beM = t;
+      if(pb === null && cum > 0) pb = t;
+    }
+    var BE = contrib2 > 0 ? F2/contrib2 : Infinity;
+    return {p12:p12v, BE:BE, op1:op1 - num("comp2"), opBefore:op1, beM:beM, pb:pb, M:M};
+  }
+
+  /* ---------- compensation ---------- */
+  function comp(m){
+    var baseA = num("baseA"), shareA = num("shareA")/100;
+    var bountyB = num("bountyB"), perMoB = num("perMoB");
+    var eqC = num("eqC")/100, distC = num("distC")/100;
+    var A = baseA*12 + shareA*Math.max(0, m.op1);
+    var B = bountyB*(num("newC")*12) + perMoB*m.sumK1;
+    var C = eqC*distC*Math.max(0, m.op1);
+    var E1 = num("newC")*12;
+    var tierDefs = [["b1","bo1","r1"],["b2","bo2","r2"],["b3","bo3","r3"]];
+    var tierComps = tierDefs.map(function(d){
+      return num(d[0])*12 + num(d[1])*E1 + num(d[2])*m.sumK1;
+    });
+    var tier = E1 <= num("t1max") ? 1 : (E1 <= num("t2max") ? 2 : 3);
+    return {A:A, B:B, C:C, D:tierComps[tier-1], tierComps:tierComps, tier:tier, E1:E1};
+  }
+
+  /* ---------- chart ---------- */
+  function drawChart(P, BE){
+    var svg = $("chart"), W = 640, H = 200, pl = 46, pr = 10, pt = 10, pb = 22;
+    var iw = W-pl-pr, ih = H-pt-pb, mn = 0, mx = 10;
+    P.forEach(function(v){ if(v > mx) mx = v; });
+    if(isFinite(BE)) mx = Math.max(mx, BE*1.05);
+    var x = function(i){ return pl + iw*i/(P.length-1); };
+    var y = function(v){ return pt + ih*(1-(v-mn)/(mx-mn)); };
+    var s = "";
+    for(var g = 0; g <= 4; g++){
+      var gv = mn + (mx-mn)*g/4, gy = y(gv);
+      s += '<line x1="'+pl+'" y1="'+gy+'" x2="'+(W-pr)+'" y2="'+gy+'" stroke="#e2e6ec" stroke-width="0.6"/>';
+      s += '<text x="'+(pl-5)+'" y="'+(gy+3)+'" text-anchor="end" font-size="9" fill="#8a93a3">'+int(gv)+'</text>';
+    }
+    s += '<text x="'+pl+'" y="'+(H-6)+'" font-size="9" fill="#8a93a3">month 1</text>';
+    s += '<text x="'+(W-pr)+'" y="'+(H-6)+'" text-anchor="end" font-size="9" fill="#8a93a3">month '+P.length+'</text>';
+    if(isFinite(BE)){
+      var pts = P.map(function(v,i){ return x(i)+","+y(BE); }).join(" ");
+      s += '<polyline points="'+pts+'" fill="none" stroke="#8a93a3" stroke-width="1" stroke-dasharray="5 4"/>';
+      s += '<text x="'+(W-pr-4)+'" y="'+(y(BE)-5)+'" text-anchor="end" font-size="9.5" fill="#5b6472">breakeven '+int(BE)+'</text>';
+    }
+    var pts2 = P.map(function(v,i){ return x(i)+","+y(v); }).join(" ");
+    s += '<polyline points="'+pts2+'" fill="none" stroke="#1f5fd6" stroke-width="2"/>';
+    s += '<circle cx="'+x(P.length-1)+'" cy="'+y(P[P.length-1])+'" r="3" fill="#1f5fd6"/>';
+    s += '<text x="'+(x(P.length-1)-6)+'" y="'+(y(P[P.length-1])-7)+'" text-anchor="end" font-size="10" fill="#16181d" font-weight="600">'+int(P[P.length-1])+' patients</text>';
+    svg.innerHTML = s;
+  }
+
+  /* ---------- outreach channels ---------- */
+  var CHANS = [
+    ["Police / sheriff departments", "Union meeting talks, HSA-funded first-responder enrollment, station lab-screening days", "Enrollments per department"],
+    ["Fire & EMS", "Same program via firefighter associations; shift-friendly 645 draw hours", "Enrollments per station"],
+    ["Club 7 Fitness (next door)", "Member events, 6-week shred co-host, front-desk flyers with channel code", "Leads per event"],
+    ["Other Route 92 gyms (BMF, Fuzion, Limitless)", "Co-branded challenges, trainer education nights", "Gyms activated"],
+    ["Personal trainers — Performance Partner tier", "Quarterly 'hormones & training response' education night (CE-style); screening vouchers for their clients; co-branded shred challenges; logo on app leaderboard. Flat co-marketing or value-in-kind only — never per-referral cash", "Referrals per trainer"],
+    ["Chiropractors — Performance Partner tier", "Monthly joint clinic nights with the DO; PRP cross-referral pathway for knee/shoulder candidates; co-hosted mobility & strength seminars. Flat co-marketing only", "Joint nights held"],
+    ["Physical therapists — Performance Partner tier", "Post-rehab strength continuum; lunch-and-learns on endocrine red flags in rehab patients; shared shred-contest teams. Flat co-marketing only", "Co-hosted events"],
+    ["Barbershops", "Counter cards, QR to $100 lab-screening special", "QR scans"],
+    ["Local employers", "Lunch-and-learn wellness talks, on-site screening days", "Screenings booked"],
+    ["First-responder events", "Charity fitness events, badge-linked discounts", "Event signups"],
+    ["Weight-loss contests", "6-week shred across all gym partners; weigh-ins at gym, finals at 645", "Contest -> enrollment %"],
+    ["Precision Athletics — OUR sports complex (courts, cages, gym)", "Leagues, bootcamps, watch parties, Dad Days, weight-loss camps on-site; screening booth at every event", "Event → screening conversions"],
+    ["Offsite venues (cigar lounge, steakhouse, brewery)", "Private-room club nights and fight-watch parties; venue hosts the crowd, guests opt in to screening vouchers", "Guests per event"]
+  ];
+  function renderChans(){
+    var tb = $("chanBody"), approved = 0;
+    tb.innerHTML = CHANS.map(function(c, i){
+      var on = window.__chanState && window.__chanState[i];
+      if(on) approved++;
+      return '<tr><td><input type="checkbox" class="chan" data-i="'+i+'" '+(on?"checked":"")+'></td><td><b>'+c[0]+'</b></td><td>'+c[1]+'</td><td style="color:var(--sub); font-size:12.5px;">'+c[2]+'</td></tr>';
+    }).join("");
+    setText("chanCount", approved + " of " + CHANS.length);
+    Array.prototype.forEach.call(document.querySelectorAll(".chan"), function(cb){
+      cb.addEventListener("change", function(){
+        window.__chanState = window.__chanState || {};
+        window.__chanState[cb.getAttribute("data-i")] = cb.checked;
+        var n = document.querySelectorAll(".chan:checked").length;
+        setText("chanCount", n + " of " + CHANS.length);
+        save();
+      });
+    });
+  }
+
+  /* ---------- app features ---------- */
+  var APPS = [
+    ["Dose & appointment reminders", "Push/SMS on injection days, refills, lab draws, provider visits"],
+    ["Hematocrit safety alerts", "Flags patients overdue for labs; escalates per protocol"],
+    ["Water intake tracker", "Daily goal + streaks"],
+    ["Protein & macro targets", "Per-plan targets tied to shred contests and weight-loss programs"],
+    ["Nutrition logging", "Photo + quick-entry food log with weekly summary"],
+    ["Lab results dashboard", "Trend lines for testosterone, lipids, A1c, hematocrit"],
+    ["Weight & BP log", "Syncs with scale; contest weigh-in integration"],
+    ["Renewal & win-back nudges", "Month-10 renewal sequence; churn-risk flags to coordinators"],
+    ["Challenge leaderboard", "Gym team standings for the 6-week shred"],
+    ["Coordinator chat", "In-app messaging with the care team (HIPAA BAA required)"],
+    ["Zoom consult booking", "Self-schedule with Chris; channel code auto-attached"],
+    ["HSA receipts", "Itemized superbills on demand, diagnosis-documented"],
+    ["Education modules", "3-minute lessons: TRT myths, sleep, training over 40, heart health, how to read your labs"],
+    ["Quizzes & self-screening", "Symptom and risk quizzes that route members to a free screening voucher"],
+    ["Challenges & leaderboards", "Streaks, points, and team challenges across gym partners; winners get event VIP"],
+    ["Event RSVPs & VIP access", "645 Club night invites; quiz points unlock VIP perks and guest passes"]
+  ];
+  function renderApps(){
+    var tb = $("appBody");
+    tb.innerHTML = APPS.map(function(a, i){
+      var st = (window.__appState && window.__appState[i]) || "p1";
+      var pill = st === "p1" ? '<span class="pill p1">Phase 1</span>' : (st === "p2" ? '<span class="pill p2">Phase 2</span>' : '<span class="pill">Later</span>');
+      return '<tr><td><input type="checkbox" class="appf" data-i="'+i+'" checked disabled style="visibility:hidden;"></td>' +
+             '<td><b>'+a[0]+'</b></td><td style="color:var(--sub);">'+a[1]+'</td>' +
+             '<td><select class="appsel" data-i="'+i+'" style="padding:5px 8px; border:1px solid #cfd6e0; border-radius:8px; font-size:13px;">' +
+             '<option value="p1"'+(st==="p1"?" selected":"")+'>Phase 1</option>' +
+             '<option value="p2"'+(st==="p2"?" selected":"")+'>Phase 2</option>' +
+             '<option value="later"'+(st==="later"?" selected":"")+'>Later</option></select> '+pill+'</td></tr>';
+    }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll(".appsel"), function(sel){
+      sel.addEventListener("change", function(){
+        window.__appState = window.__appState || {};
+        window.__appState[sel.getAttribute("data-i")] = sel.value;
+        renderApps(); save();
+      });
+    });
+  }
+  window.__chanState = {}; window.__appState = {}; window.__trigState = {};
+
+  /* ---------- scale triggers ---------- */
+  var TRIGS = [
+    "Site 1: 100+ active patients",
+    "Churn ≤ 2% for 6 consecutive months",
+    "Operating profit positive 6+ months",
+    "SOPs documented — consult script, screening-day kit, event runbook, onboarding",
+    "Waitlist or 4+ week booking backlog",
+    "NP #2 (or added per-diem coverage) identified, CPA ready for the new market",
+    "Club playbook runs without Chris — a coordinator can execute an event solo"
+  ];
+  function renderTriggers(){
+    var box = $("trigList"), n = 0;
+    box.innerHTML = TRIGS.map(function(t, i){
+      var on = window.__trigState && window.__trigState[i];
+      if(on) n++;
+      return '<label style="display:flex; gap:8px; align-items:flex-start; margin:0;"><input type="checkbox" class="trig" data-i="'+i+'" '+(on?"checked":"")+' style="width:auto; margin-top:3px;"><span>'+t+'</span></label>';
+    }).join("");
+    setText("trigCount", n + " of " + TRIGS.length);
+    Array.prototype.forEach.call(document.querySelectorAll(".trig"), function(cb){
+      cb.addEventListener("change", function(){
+        window.__trigState = window.__trigState || {};
+        window.__trigState[cb.getAttribute("data-i")] = cb.checked;
+        var c = document.querySelectorAll(".trig:checked").length;
+        setText("trigCount", c + " of " + TRIGS.length);
+        save();
+      });
+    });
+  }
+
+  /* ---------- summary ---------- */
+  function buildSummary(m, c){
+    var L = [];
+    L.push("REJUV MEN'S HEALTH PARTNERSHIP SHEET — RESULTS");
+    L.push("Completed: " + new Date().toLocaleDateString("en-US"));
+    L.push("");
+    L.push("=== 1 · NUMBERS (inputs) ===");
+    L.push("Monthly price: $" + num("price") + " | Add-on margin/patient-mo: $" + num("addon"));
+    L.push("New patients/mo — Chris channels: " + num("newC") + " | Existing brand: " + num("newR"));
+    L.push("Churn: " + num("churn") + "% | Horizon: " + num("months") + " months");
+    L.push("Variable cost/patient-mo: $" + num("varCost") + " | Fixed + events/mo: $" + (num("fixed") + num("eventsBudget")) + " | Startup outlay: $" + num("outlay"));
+    L.push("--- results ---");
+    L.push("Active patients month 12: " + int(m.p12) + " | final month: " + int(m.pend));
+    L.push("Breakeven patients: " + (isFinite(m.BE) ? int(m.BE) : "n/a"));
+    L.push("Year-1 revenue: " + full(m.rev1) + " | Year-1 operating profit: " + full(m.op1));
+    L.push("Cumulative cash at horizon (after outlay): " + full(m.cum));
+    L.push("");
+    L.push("=== 2 · CHRIS COMPENSATION (year 1) ===");
+    L.push("A — Base " + money(num("baseA")) + "/mo + " + num("shareA") + "% profit share: Chris " + full(c.A) + " | practice keeps " + full(m.op1 - c.A));
+    L.push("B — Bounty " + money(num("bountyB")) + "/enrollment + " + money(num("perMoB")) + "/active/mo: Chris " + full(c.B) + " | practice keeps " + full(m.op1 - c.B));
+    L.push("C — Equity " + num("eqC") + "% x " + num("distC") + "% distribution: Chris " + full(c.C) + " | practice keeps " + full(m.op1 - c.C));
+    L.push("D — Tiered plan: achieved Tier " + c.tier + " (" + int(c.E1) + " his-channel enrollments in Y1): Chris " + full(c.D) + " | practice keeps " + full(m.op1 - c.D) + " | his channel collects " + full(m.sumK1*num("price")) + " in Y1 before any of this pay");
+    var s2 = site2();
+    L.push("");
+    L.push("=== SITE 2 · SCALE MODEL ===");
+    L.push("Inputs — outlay $" + num("outlay2") + " | fixed+events $" + num("fixed2") + "/mo | new pts/mo " + (num("newC2")+num("newR2")) + " (his " + num("newC2") + " + brand " + num("newR2") + ") | churn " + num("churn2") + "% | Chris Y1 comp " + full(num("comp2")));
+    L.push("Results — active pts mo 12: " + int(s2.p12) + " | breakeven pts: " + (isFinite(s2.BE) ? int(s2.BE) : "n/a") + " | Y1 op profit after Chris comp: " + full(s2.op1) + " | outlay payback: " + (s2.pb ? ("month " + s2.pb) : ("not within " + s2.M + " months")));
+    L.push("E — Retainer + tiers: retainer " + money(num("retE")) + "/mo + Tier " + c.tier + " D-pay: Chris " + full(num("retE")*12 + c.D) + " | practice keeps " + full(m.op1 - num("retE")*12 - c.D) + " | scope: SEO, website, social, funnels, CRM, coordinators, events, partnerships — clinical excluded");
+    L.push("Launch triggers met: " + (window.__trigState ? Object.keys(window.__trigState).filter(function(k){ return window.__trigState[k]; }).length : 0) + " of " + TRIGS.length);
+    L.push("");
+    L.push("=== 3 · OUTREACH CHANNELS APPROVED ===");
+    var any = false;
+    CHANS.forEach(function(ch, i){ if(window.__chanState && window.__chanState[i]){ L.push("[x] " + ch[0]); any = true; } });
+    if(!any) L.push("(none checked yet)");
+    L.push("");
+    L.push("=== 5 · APP FEATURES ===");
+    APPS.forEach(function(a, i){
+      var st = (window.__appState && window.__appState[i]) || "p1";
+      L.push("[" + (st === "p1" ? "Phase 1" : (st === "p2" ? "Phase 2" : "Later")) + "] " + a[0]);
+    });
+    L.push("");
+    L.push("Notes / edits:");
+    L.push("(free space for your comments)");
+    return L.join("\n");
+  }
+
+  /* ---------- main compute ---------- */
+  function compute(){
+    var m = model(), c = comp(m);
+    setText("vP12", int(m.p12));
+    setText("vPend", int(m.pend));
+    setText("vBE", isFinite(m.BE) ? int(m.BE) : "n/a");
+    setText("vRev1", full(m.rev1));
+    var op = $("vOp1"); op.textContent = full(m.op1); op.className = "v " + (m.op1 >= 0 ? "pos" : "neg");
+    var cu = $("vCum"); cu.textContent = full(m.cum); cu.className = "v " + (m.cum >= 0 ? "pos" : "neg");
+    setText("cA", full(c.A)); setText("rA", full(m.op1 - c.A));
+    setText("cB", full(c.B)); setText("rB", full(m.op1 - c.B));
+    setText("cC", full(c.C)); setText("rC", full(m.op1 - c.C));
+    setText("cD", full(c.D)); setText("rD", full(m.op1 - c.D));
+    setText("cE", full(num("retE")*12 + c.D)); setText("rE", full(m.op1 - num("retE")*12 - c.D));
+    c.tierComps.forEach(function(tc, i){
+      setText("d"+(i+1), full(tc));
+      setText("d"+(i+1)+"r", full(m.op1 - tc));
+      var row = $("tr"+(i+1));
+      if(row) row.style.background = (c.tier === i+1) ? "color-mix(in srgb, var(--accent) 7%, transparent)" : "";
+    });
+    setText("t1minL", int(num("t1max")+1));
+    setText("t2minL", int(num("t2max")+1));
+    setText("tierNow", "Tier " + c.tier + (c.tier===1 ? " (Foundation)" : (c.tier===2 ? " (Momentum)" : " (Engine)")));
+    setText("tierRev", full(m.sumK1*num("price")));
+    var s2 = site2();
+    setText("v2P12", int(s2.p12));
+    setText("v2BE", isFinite(s2.BE) ? int(s2.BE) : "n/a");
+    var v2 = $("v2Op1"); v2.textContent = full(s2.op1); v2.className = "v " + (s2.op1 >= 0 ? "pos" : "neg");
+    setText("v2Pay", s2.pb ? ("mo " + s2.pb) : (s2.beM ? ("op BE mo " + s2.beM + " · cash > " + s2.M) : ("op BE > " + s2.M)));
+    drawChart(m.P, m.BE);
+    $("summary").value = buildSummary(m, c);
+    return {m:m, c:c};
+  }
+
+  /* ---------- buttons ---------- */
+  $("btnCopy").addEventListener("click", function(){
+    var ta = $("summary"); ta.select();
+    var done = function(){ setText("copyMsg", "copied — paste into an email"); setTimeout(function(){ setText("copyMsg",""); }, 2000); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(ta.value).then(done, function(){ document.execCommand("copy"); done(); });
+    } else { document.execCommand("copy"); done(); }
+  });
+  $("btnMail").addEventListener("click", function(){
+    var em = $("chrisEmail").value.trim() || "chris@example.com";
+    var body = encodeURIComponent($("summary").value);
+    window.location.href = "mailto:" + em + "?subject=" + encodeURIComponent("Rejuv partnership sheet — my numbers") + "&body=" + body;
+  });
+
+  /* ---------- init ---------- */
+  load();
+  renderChans(); renderApps(); renderTriggers();
+  FIELDS.forEach(function(f){ $(f).addEventListener("input", function(){ compute(); save(); }); });
+  compute();
+})();
+</script>
+</body>
+</html>
