@@ -493,15 +493,30 @@
       .replace(/~/g, "about ").replace(/·/g, ",").replace(/\//g, " ")
       .replace(/\s+/g, " ").trim();
   }
-  function speak(t){
+  var XAI_VOICE_URL = "https://limenhelix.com/api/orb-voice?voice=leo&text=";
+  var xaiAudio = null;
+  function stopVoice(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+    if(xaiAudio){ try{ xaiAudio.pause(); }catch(e){} xaiAudio = null; }
+  }
+  function speakBrowser(clean){
     if(muted || !("speechSynthesis" in window)) return;
-    speechSynthesis.cancel();
-    speechSynthesis.resume();
-    var u = new SpeechSynthesisUtterance(cleanForSpeech(t));
+    var u = new SpeechSynthesisUtterance(clean);
     if(voice) u.voice = voice;
     u.pitch = 0.85;
     u.rate = 1.04;
     speechSynthesis.speak(u);
+  }
+  function speak(t){
+    if(muted) return;
+    stopVoice();
+    var clean = cleanForSpeech(t);
+    if(clean.length > 1300) clean = clean.slice(0, 1300);
+    if("speechSynthesis" in window) speechSynthesis.resume();
+    xaiAudio = new Audio(XAI_VOICE_URL + encodeURIComponent(clean));
+    xaiAudio.onerror = function(){ xaiAudio = null; speakBrowser(clean); };
+    var pr = xaiAudio.play();
+    if(pr && pr.catch) pr.catch(function(){ if(xaiAudio){ xaiAudio = null; speakBrowser(clean); } });
   }
 
   var fab = document.createElement("button");
@@ -510,7 +525,7 @@
   var panel = document.createElement("div");
   panel.className = "chrisai-panel";
   panel.innerHTML =
-    '<div class="cai-head">Testo<span>xAI-grade voice, garage-grade brain — knows THIS site and nothing else</span><button class="cai-mute" title="Voice on/off">🔊</button></div>' +
+    '<div class="cai-head">Testo<span>real xAI Grok voice (leo), garage-grade brain — knows THIS site and nothing else</span><button class="cai-mute" title="Voice on/off">🔊</button></div>' +
     '<div class="cai-log"></div>' +
     '<div class="cai-chips"></div>' +
     '<div class="cai-inrow"><input type="text" placeholder="Ask about the plan…"><button>Ask</button></div>';
@@ -529,7 +544,7 @@
     muted = !muted;
     muteBtn.textContent = muted ? "🔇" : "🔊";
     try{ localStorage.setItem("testoMuted", muted ? "1" : "0"); }catch(e){}
-    if(muted && "speechSynthesis" in window) speechSynthesis.cancel();
+    if(muted) stopVoice();
   });
 
   function add(cls, text){
@@ -555,7 +570,7 @@
   });
   fab.addEventListener("click", function(){
     panel.classList.toggle("open");
-    if(!panel.classList.contains("open") && "speechSynthesis" in window) speechSynthesis.cancel();
+    if(!panel.classList.contains("open")) stopVoice();
     if(panel.classList.contains("open") && !greeted){
       greeted = true;
       add("cai-bot", "Dr. Vogt. Tracy. Alex. Welcome — I'm Testo, the tour guide living inside this website: Grok-style voice, local brain, clinical attention span. I know ONLY what's on these two pages, and I will walk you through all of it — compensation, marketing, the club, the dashboard — with jokes. Tap a question below; I charge by the tangent.");
