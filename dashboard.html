@@ -13,7 +13,11 @@
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.45;background:#0b0d12 url("lions-bg.webp") center 20%/cover no-repeat fixed;}
   body::before{content:"";position:fixed;inset:0;z-index:-1;background:rgba(10,12,18,.58);}
   .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 80px;}
-  header.top{background:linear-gradient(135deg,#141a26,#1f2c47);color:#fff;border-radius:14px;padding:22px 22px 18px;margin-bottom:16px;}
+  header.top{position:relative;cursor:pointer;background:linear-gradient(135deg,rgba(20,26,38,.38),rgba(31,44,71,.38));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:14px;padding:22px 22px 18px;margin-bottom:16px;text-shadow:0 1px 4px rgba(0,0,0,.55);}
+  header.top .toggle{position:absolute;top:14px;right:16px;color:#c4cede;font-size:14px;user-select:none;transition:transform .25s;}
+  header.top.collapsed .toggle{transform:rotate(-90deg);}
+  header.top .collapsible{overflow:hidden;max-height:300px;opacity:1;transition:max-height .3s ease,opacity .25s ease;}
+  header.top.collapsed .collapsible{max-height:0;opacity:0;}
   header.top h1{font-size:22px;}
   header.top p{color:#c4cede;font-size:13px;margin-top:4px;}
   .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:11.5px;padding:2px 9px;border-radius:999px;margin-bottom:10px;}
@@ -73,9 +77,12 @@
 <div class="wrap">
 
 <header class="top">
+  <span class="toggle">▾</span>
   <div class="badge">Weekly growth &amp; activity · 645 State Rte 92</div>
   <h1>Rejuv Growth Dashboard</h1>
+  <div class="collapsible">
   <p>The shared pulse: leads, consults, labs, enrollments, revenue, events, and app activity — one row per week. Chris updates it every Friday; partners check it any time.</p>
+  </div>
 </header>
 
 <!-- SETTINGS -->
@@ -335,6 +342,19 @@
 
   load();
   renderWeeks(); kpis(); charts();
+})();
+</script>
+<script>
+(function(){
+  var h = document.querySelector("header.top");
+  if(!h) return;
+  var KEY = "rejuvHeroCollapsed";
+  try{ if(localStorage.getItem(KEY) === "1") h.classList.add("collapsed"); }catch(e){}
+  h.addEventListener("click", function(ev){
+    if(ev.target.closest && ev.target.closest("input,button,a,select,textarea")) return;
+    h.classList.toggle("collapsed");
+    try{ localStorage.setItem(KEY, h.classList.contains("collapsed") ? "1" : "0"); }catch(e){}
+  });
 })();
 </script>
 </body>
