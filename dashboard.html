@@ -21,7 +21,12 @@
   header.top h1{font-size:22px;}
   header.top p{color:#c4cede;font-size:13px;margin-top:4px;}
   .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:11.5px;padding:2px 9px;border-radius:999px;margin-bottom:10px;}
-  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);}
+  section{background:rgba(255,255,255,.87);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);}
+  section h2{cursor:pointer;user-select:none;position:relative;padding-right:26px;}
+  section h2 .sectoggle{position:absolute;right:0;top:2px;color:var(--sub);font-size:14px;transition:transform .25s;}
+  section.seccollapsed h2 .sectoggle{transform:rotate(-90deg);}
+  section .secbody{overflow:hidden;max-height:8000px;opacity:1;transition:max-height .35s ease,opacity .25s ease;}
+  section.seccollapsed .secbody{max-height:0;opacity:0;}
   h2{font-size:17px;margin-bottom:3px;}
   h2 .num{color:var(--blue);margin-right:5px;}
   .lede{font-size:13px;color:var(--sub);margin-bottom:12px;max-width:780px;}
@@ -70,6 +75,23 @@
     .rowbtns{flex-direction:column;}
     .stat .v{font-size:18px;}
   }
+  .chrisai-fab{position:fixed;right:18px;bottom:18px;z-index:60;background:linear-gradient(135deg,#141a26,#1f2c47);color:#fff;border:1px solid rgba(212,175,55,.65);font-size:14px;font-weight:600;padding:12px 18px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);font-family:inherit;}
+  .chrisai-fab:hover{border-color:#d4af37;}
+  .chrisai-panel{position:fixed;right:18px;bottom:78px;z-index:60;width:min(370px,calc(100vw - 36px));height:450px;max-height:72vh;background:rgba(20,26,38,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.45);border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,.55);color:#e8ecf3;}
+  .chrisai-panel.open{display:flex;}
+  .cai-head{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px;}
+  .cai-head span{display:block;font-weight:400;font-size:11px;color:#c4cede;margin-top:2px;}
+  .cai-log{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;}
+  .cai-msg{max-width:88%;padding:8px 11px;border-radius:12px;font-size:13px;line-height:1.45;}
+  .cai-bot{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);align-self:flex-start;}
+  .cai-user{background:#1f5fd6;align-self:flex-end;}
+  .cai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 8px;}
+  .cai-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#c4cede;font-size:11.5px;padding:4px 9px;border-radius:999px;cursor:pointer;}
+  .cai-chip:hover{color:#fff;border-color:rgba(212,175,55,.6);}
+  .cai-inrow{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.12);}
+  .cai-inrow input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:9px;color:#fff;padding:8px 10px;font-size:13px;}
+  .cai-inrow input:focus{outline:2px solid #d4af37;border-color:#d4af37;}
+  .cai-inrow button{background:#d4af37;border:none;color:#141a26;font-weight:700;border-radius:9px;padding:8px 14px;cursor:pointer;font-size:13px;}
 </style>
 <base target="_blank">
 </head>
@@ -355,6 +377,115 @@
     h.classList.toggle("collapsed");
     try{ localStorage.setItem(KEY, h.classList.contains("collapsed") ? "1" : "0"); }catch(e){}
   });
+})();
+</script>
+<script>
+(function(){
+  /* ---------- collapsible sections ---------- */
+  var SKEY = "rejuvSections";
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(SKEY)) || {}; }catch(e){}
+  Array.prototype.forEach.call(document.querySelectorAll("section"), function(sec, i){
+    var h2 = sec.querySelector("h2");
+    if(!h2) return;
+    var id = sec.id || ("sec" + i);
+    var body = document.createElement("div");
+    body.className = "secbody";
+    while(h2.nextSibling) body.appendChild(h2.nextSibling);
+    sec.appendChild(body);
+    var t = document.createElement("span");
+    t.className = "sectoggle";
+    t.textContent = "▾";
+    h2.appendChild(t);
+    if(saved[id]) sec.classList.add("seccollapsed");
+    h2.addEventListener("click", function(ev){
+      if(ev.target.closest && ev.target.closest("input,button,a,select,textarea")) return;
+      sec.classList.toggle("seccollapsed");
+      saved[id] = sec.classList.contains("seccollapsed");
+      try{ localStorage.setItem(SKEY, JSON.stringify(saved)); }catch(e){}
+    });
+  });
+
+  /* ---------- ChrisAI ---------- */
+  var BRAIN = [
+    {k:["who is","who's chris","about chris"], a:"Chris Hubbel — Rejuv's non-clinical growth partner and the reason this website exists. 12+ years leading people, 30 years in retention-driven businesses, and 100% of the personality in this chat window."},
+    {k:["track record","numbers","results","sales","accomplish","prove"], a:"Where do I start? $446K closed in a single month — 138% of target (the target has since requested a transfer). Cut cancellations 18% at a $3M-a-year Gold's Gym. Kept 85% of his accounts through a major market disruption. Beat quarterly revenue targets by 22% across three locations. Seven National Sales Awards, including Million Dollar Producer. The man is a spreadsheet with charisma."},
+    {k:["retention","churn","cancel"], a:"Churn is his white whale. He built early-warning tracking that flags at-risk clients BEFORE they cancel — that's how he cut cancellations 18% at Gold's Gym, and why the partnership sheet pays him monthly residuals: his patients stick around."},
+    {k:[" ai "," ai?"," ai.","limen","helix","platform","robot"," tech "], a:"He architected and runs LIMEN Helix — a production AI platform with ~70 scheduled workers analyzing ~200 data feeds that literally grades its own forecasts. So yes: an AI is telling you about the AI he built. We have a group chat. It's awkward."},
+    {k:["clinical","doctor","medical","nurse","provider","inject","prescribe"], a:"Absolutely not clinical — and that's the whole point. Providers do medicine; Chris does everything else: SEO, funnels, CRM, events, partnerships, Zoom consults, and witty chatbots. He has never once tried to draw blood. You're welcome."},
+    {k:["645","club","event","party","basketball","league"], a:"The 645 Club is his baby — basketball leagues, fight-night watch parties, shred contests, Dad Days, Man Day weekends. His theory: you can't out-franchise a 400-unit chain on clinical sameness, so you out-local it on belonging. The events budget is in Section 1; the swagger is free."},
+    {k:["zoom","consult","call","book"], a:"Every patient journey starts with a Zoom with Chris: 15–20 minutes of goals, pricing, and HSA wizardry — zero medical advice, 100% enrollment craft. He ran this playbook at Heartland Men's Health on premium programs up to $15K."},
+    {k:["why","partner","hire","deal","comp","pay"], a:"Because his comp plan on this very site is self-funding — Structure D only scales after his channel has out-earned its cost. That's not confidence, that's arithmetic. Also, he made you a live financial model instead of a PowerPoint. Choose accordingly."},
+    {k:["award","win","best"], a:"Seven National Sales Awards, including the Million Dollar Producer award. He'd never bring it up himself. That's why he built me."},
+    {k:["funny","joke","laugh","lol"], a:"Fun fact: Chris taught Salesforce to entire teams. Salesforce has not emotionally recovered. Want another one? Ask me about his AI platform."},
+    {k:["heartland","experience","worked","job","resume"], a:"Most recently: Patient Coordinator & Sales Lead at Heartland Men's Health in North KC — full client lifecycle on premium men's-health programs. Before that: regional sales leadership, Gold's Gym GM (~$3M/yr location), district manager opening clubs from scratch. Healthcare-adjacent throughout."},
+    {k:["dashboard","sheet","site","website","page"], a:"This site? It's his working partnership proposal: a live financial model on page one, a weekly scorecard on the dashboard. Most people bring a pitch deck. Chris brings arithmetic."}
+  ];
+  var FALLBACK = [
+    "My training data is one (1) resume and unlimited confidence. Try asking about his track record, the 645 Club, or the AI platform he runs.",
+    "I could make something up, but Chris insists on verifiable claims — very on brand. Ask me about sales numbers, retention, or why he's not clinical.",
+    "Unclear. Have you considered that Chris is great? Try a question about his experience, awards, or the Zoom consult process."
+  ];
+  var fb = 0;
+  function answer(q){
+    q = " " + q.toLowerCase().replace(/\s+/g, " ") + " ";
+    for(var i = 0; i < BRAIN.length; i++){
+      var ks = BRAIN[i].k;
+      for(var j = 0; j < ks.length; j++){
+        if(q.indexOf(ks[j]) >= 0) return BRAIN[i].a;
+      }
+    }
+    return FALLBACK[(fb++) % FALLBACK.length];
+  }
+
+  var fab = document.createElement("button");
+  fab.className = "chrisai-fab";
+  fab.textContent = "🦁 Ask the Chris AI";
+  var panel = document.createElement("div");
+  panel.className = "chrisai-panel";
+  panel.innerHTML =
+    '<div class="cai-head">ChrisAI<span>100% unbiased artificial intelligence* (*trained on one resume, provided by Chris)</span></div>' +
+    '<div class="cai-log"></div>' +
+    '<div class="cai-chips"></div>' +
+    '<div class="cai-inrow"><input type="text" placeholder="Ask about Chris…"><button>Ask</button></div>';
+  document.body.appendChild(fab);
+  document.body.appendChild(panel);
+
+  var log = panel.querySelector(".cai-log");
+  var input = panel.querySelector("input");
+  var btn = panel.querySelector("button");
+  var chips = panel.querySelector(".cai-chips");
+  var greeted = false;
+
+  function add(cls, text){
+    var d = document.createElement("div");
+    d.className = "cai-msg " + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  }
+  function ask(q){
+    if(!q) return;
+    add("cai-user", q);
+    input.value = "";
+    setTimeout(function(){ add("cai-bot", answer(q)); }, 350);
+  }
+  ["Who is Chris?","What's his track record?","Is he clinical?","Why partner with him?"].forEach(function(c){
+    var b = document.createElement("button");
+    b.className = "cai-chip";
+    b.textContent = c;
+    b.addEventListener("click", function(){ ask(c); });
+    chips.appendChild(b);
+  });
+  fab.addEventListener("click", function(){
+    panel.classList.toggle("open");
+    if(panel.classList.contains("open") && !greeted){
+      greeted = true;
+      add("cai-bot", "Hello. I am ChrisAI — a completely unbiased artificial intelligence built to answer questions about Chris Hubbel. (Unbiasedness pending review. By Chris.) Ask me anything, or tap a question below.");
+    }
+  });
+  btn.addEventListener("click", function(){ ask(input.value.trim()); });
+  input.addEventListener("keydown", function(ev){ if(ev.key === "Enter") ask(input.value.trim()); });
 })();
 </script>
 </body>
