@@ -466,6 +466,7 @@
   function speak(t){
     if(muted || !("speechSynthesis" in window)) return;
     speechSynthesis.cancel();
+    speechSynthesis.resume();
     var u = new SpeechSynthesisUtterance(t);
     if(voice) u.voice = voice;
     u.pitch = 0.85;
