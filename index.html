@@ -880,9 +880,8 @@
   var voice = null;
   function pickVoice(){
     if(!("speechSynthesis" in window)) return;
-    var vs = speechSynthesis.getVoices().filter(function(v){ return v.lang.indexOf("en-US") === 0; });
-    if(!vs.length) vs = speechSynthesis.getVoices().filter(function(v){ return v.lang.indexOf("en") === 0; });
-    var prefs = ["Christopher Online (Natural)","Andrew Online (Natural)","Brian Online (Natural)","Guy Online (Natural)","Eric Online (Natural)","Roger Online (Natural)","Natural","Microsoft Guy","Microsoft David","Google US English","Alex","Daniel","Fred","Male"];
+    var vs = speechSynthesis.getVoices().filter(function(v){ return v.lang.indexOf("en") === 0; });
+    var prefs = ["Microsoft Guy","Microsoft David","Google US English","Alex","Daniel","Fred","Male","en-US"];
     for(var i = 0; i < prefs.length; i++){
       for(var j = 0; j < vs.length; j++){
         if(vs[j].name.indexOf(prefs[i]) >= 0){ voice = vs[j]; return; }
@@ -909,17 +908,11 @@
     if(muted || !("speechSynthesis" in window)) return;
     speechSynthesis.cancel();
     speechSynthesis.resume();
-    var clean = cleanForSpeech(t);
-    var parts = clean.match(/[^.!?]+[.!?]+["')]?|[^.!?]+$/g) || [clean];
-    parts.forEach(function(p){
-      p = p.trim();
-      if(!p) return;
-      var u = new SpeechSynthesisUtterance(p);
-      if(voice) u.voice = voice;
-      u.pitch = 0.95;
-      u.rate = 1.02;
-      speechSynthesis.speak(u);
-    });
+    var u = new SpeechSynthesisUtterance(cleanForSpeech(t));
+    if(voice) u.voice = voice;
+    u.pitch = 0.85;
+    u.rate = 1.04;
+    speechSynthesis.speak(u);
   }
 
   var fab = document.createElement("button");
