@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#141a26">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Rejuv Old-School P&amp;L</title>
+<style>
+  :root{--ink:#16181d;--sub:#5b6472;--line:#e2e6ec;--bg:#f7f8fa;--card:#fff;--blue:#1f5fd6;--red:#b3261e;--green:#1a7f4b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.45;background:#0b0d12 url("lions-bg.webp") center 20%/cover no-repeat fixed;}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:rgba(10,12,18,.42);}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 80px;}
+  header.top{position:relative;cursor:pointer;background:linear-gradient(135deg,rgba(20,26,38,.38),rgba(31,44,71,.38));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:14px;padding:22px 22px 18px;margin-bottom:16px;text-shadow:0 1px 4px rgba(0,0,0,.55);}
+  header.top h1{font-size:22px;}
+  header.top p{color:#c4cede;font-size:13px;margin-top:4px;}
+  header.top a{color:#9ec1ff;}
+  .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:11.5px;padding:2px 9px;border-radius:999px;margin-bottom:10px;}
+  header.top .toggle{position:absolute;top:14px;right:16px;color:#c4cede;font-size:14px;user-select:none;transition:transform .25s;}
+  header.top.collapsed .toggle{transform:rotate(-90deg);}
+  header.top .collapsible{overflow:hidden;max-height:300px;opacity:1;transition:max-height .3s ease,opacity .25s ease;}
+  header.top.collapsed .collapsible{max-height:0;opacity:0;}
+  section{background:rgba(15,19,29,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);--ink:#eef1f6;--sub:#b6bfcc;--line:rgba(255,255,255,.16);color:#eef1f6;}
+  section h2{cursor:pointer;user-select:none;position:relative;padding-right:26px;font-size:17px;margin-bottom:3px;}
+  h2 .num{color:#6ea8ff;margin-right:5px;}
+  section h2 .sectoggle{position:absolute;right:0;top:2px;color:var(--sub);font-size:14px;transition:transform .25s;}
+  section.seccollapsed h2 .sectoggle{transform:rotate(-90deg);}
+  section .secbody{overflow:hidden;max-height:9000px;opacity:1;transition:max-height .35s ease,opacity .25s ease;}
+  section.seccollapsed .secbody{max-height:0;opacity:0;}
+  .lede{font-size:13px;color:var(--sub);margin-bottom:12px;max-width:780px;}
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .note{font-size:12px;color:var(--sub);background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin-top:10px;}
+
+  /* ---------- spreadsheet ---------- */
+  .sheet{border-collapse:collapse;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;min-width:640px;}
+  .sheet th,.sheet td{border:1px solid var(--line);padding:4px 8px;text-align:left;}
+  .sheet th.col{background:rgba(255,255,255,.07);color:var(--sub);text-align:center;font-size:10.5px;letter-spacing:.5px;font-weight:600;min-width:88px;}
+  .sheet th.col.first{min-width:34px;}
+  .sheet td.rn{background:rgba(255,255,255,.04);color:var(--sub);text-align:right;font-size:10.5px;width:34px;}
+  .sheet td.grp{background:rgba(110,168,255,.12);color:#9ec1ff;font-weight:700;font-size:11px;letter-spacing:.6px;}
+  .sheet td.lbl{color:var(--ink);}
+  .sheet td.calc{background:rgba(255,255,255,.03);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink);}
+  .sheet td.calc.pos{color:#7ee2a8;}
+  .sheet td.calc.neg{color:#ff9d94;}
+  .sheet td.edit{background:rgba(212,175,55,.16);padding:2px;}
+  .sheet td.edit input{width:100%;border:1px solid rgba(212,175,55,.45);border-radius:4px;background:#fff;color:#16181d !important;padding:4px 7px;font-family:inherit;font-size:12.5px;font-variant-numeric:tabular-nums;}
+  .sheet td.edit input:focus{outline:2px solid #d4af37;}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--sub);margin-bottom:10px;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .legend i{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--line);}
+  .legend .sw-e{background:rgba(212,175,55,.35);}
+  .legend .sw-l{background:rgba(255,255,255,.06);}
+
+  .chrisai-fab{position:fixed;right:18px;bottom:18px;z-index:60;background:linear-gradient(135deg,#141a26,#1f2c47);color:#fff;border:1px solid rgba(212,175,55,.65);font-size:14px;font-weight:600;padding:12px 18px;border-radius:999px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45);font-family:inherit;}
+  .chrisai-fab:hover{border-color:#d4af37;}
+  .chrisai-panel{position:fixed;right:18px;bottom:78px;z-index:60;width:min(370px,calc(100vw - 36px));height:450px;max-height:72vh;background:rgba(20,26,38,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.45);border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,.55);color:#e8ecf3;}
+  .chrisai-panel.open{display:flex;}
+  .cai-head{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.12);font-weight:700;font-size:14px;position:relative;}
+  .cai-head span{display:block;font-weight:400;font-size:11px;color:#c4cede;margin-top:2px;}
+  .cai-mute{position:absolute;right:10px;top:9px;background:none;border:none;color:#c4cede;font-size:16px;cursor:pointer;padding:2px 4px;}
+  .cai-mute:hover{color:#d4af37;}
+  .cai-log{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;}
+  .cai-msg{max-width:88%;padding:8px 11px;border-radius:12px;font-size:13px;line-height:1.45;}
+  .cai-bot{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);align-self:flex-start;}
+  .cai-user{background:#1f5fd6;align-self:flex-end;}
+  .cai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 8px;}
+  .cai-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#c4cede;font-size:11.5px;padding:4px 9px;border-radius:999px;cursor:pointer;}
+  .cai-chip:hover{color:#fff;border-color:rgba(212,175,55,.6);}
+  .cai-inrow{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.12);}
+  .cai-inrow input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:9px;color:#fff;padding:8px 10px;font-size:13px;}
+  .cai-inrow input:focus{outline:2px solid #d4af37;border-color:#d4af37;}
+  .cai-inrow button{background:#d4af37;border:none;color:#141a26;font-weight:700;border-radius:9px;padding:8px 14px;cursor:pointer;font-size:13px;}
+  @media (max-width:720px){
+    .wrap{padding:10px 8px 60px;}
+    header.top{padding:16px 14px;border-radius:12px;}
+    header.top h1{font-size:18px;}
+    section{padding:14px 12px;border-radius:12px;}
+    .sheet{min-width:560px;font-size:12px;}
+    .sheet td.edit input{font-size:16px;}
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <span class="toggle">▾</span>
+  <div class="badge">The actual spreadsheet · 645 State Rte 92</div>
+  <h1>Rejuv Old-School P&amp;L</h1>
+  <div class="collapsible">
+  <p>The same mathematics as the <a href="index.html">partnership sheet</a> and the <a href="dashboard.html">growth dashboard</a>, in classic spreadsheet form. Gold cells take your numbers — everything else is locked and recomputes live. No cell can be broken, no formula can be fat-fingered.</p>
+  </div>
+</header>
+
+<!-- 1 · INPUTS -->
+<section id="inputs">
+  <h2><span class="num">1</span>Inputs — the numbers you know</h2>
+  <div class="secbody">
+  <div class="legend"><span><i class="sw-e"></i>editable — type here</span><span><i class="sw-l"></i>locked — formula cells</span></div>
+  <div class="tblwrap"><table class="sheet" id="inSheet"></table></div>
+  <div class="note">Every value saves on this device and drives the model and summary below. Defaults match the partnership sheet exactly.</div>
+  </div>
+</section>
+
+<!-- 2 · MODEL -->
+<section id="model">
+  <h2><span class="num">2</span>Monthly model — locked, live</h2>
+  <div class="secbody">
+  <p class="lede">Site 1 on the left, site 2 on the right. Patients compound at the churn rate; profit is contribution minus fixed; cash starts at negative outlay.</p>
+  <div class="tblwrap"><table class="sheet" id="modelSheet"></table></div>
+  </div>
+</section>
+
+<!-- 3 · SUMMARY -->
+<section id="summarySec">
+  <h2><span class="num">3</span>Summary — locked, live</h2>
+  <div class="secbody">
+  <div class="tblwrap"><table class="sheet" id="sumSheet"></table></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function num(id){ var el = $(id); var v = el ? parseFloat(el.value) : NaN; return isNaN(v) ? 0 : v; }
+  function full(n){ return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US"); }
+  function int(n){ return Math.round(n).toLocaleString("en-US"); }
+  function dec(n, d){ return n.toLocaleString("en-US", {minimumFractionDigits: d || 1, maximumFractionDigits: d || 1}); }
+
+  var INPUTS = [
+    ["price","Avg monthly price per patient ($)",249.92,"REVENUE DRIVERS"],
+    ["addon","Add-on margin / patient-mo ($, ED · GLP-1 · PRP amortized)",40],
+    ["newC","New patients/mo — Chris's outreach",12],
+    ["newR","New patients/mo — existing Rejuv brand",6],
+    ["churn","Monthly churn (%)",1.5],
+    ["months","Projection horizon (months, max 36)",24],
+    ["varCost","Variable cost / patient-mo ($ meds+labs+supplies)",100,"COSTS"],
+    ["fixed","Fixed costs / month ($, lean launch ≈ 14k · full-time NP ≈ 24.6k)",14000],
+    ["eventsBudget","Events budget / month ($)",800],
+    ["outlay","Startup outlay ($)",80000],
+    ["baseA","Base ($/mo, outreach & ops management)",3000,"COMP A · BASE + PROFIT SHARE"],
+    ["shareA","Share of year-1 operating profit (%)",15],
+    ["bountyB","Bounty per enrollment from Chris's channels ($)",175,"COMP B · CHANNEL BOUNTY"],
+    ["perMoB","Monthly residual per active Chris-channel patient ($)",25],
+    ["eqC","LLC membership interest to Chris (%)",20,"COMP C · EQUITY / DISTRIBUTION"],
+    ["distC","Distributions paid (% of positive operating profit)",70],
+    ["t1max","Tier 1 · max Y1 enrollments",30,"COMP D · TIERED PERFORMANCE PLAN"],
+    ["b1","Tier 1 · base ($/mo)",1500],
+    ["bo1","Tier 1 · bounty ($/enrollment)",150],
+    ["r1","Tier 1 · residual ($/active/mo)",0],
+    ["t2max","Tier 2 · max Y1 enrollments",75],
+    ["b2","Tier 2 · base ($/mo)",1750],
+    ["bo2","Tier 2 · bounty ($/enrollment)",175],
+    ["r2","Tier 2 · residual ($/active/mo)",10],
+    ["b3","Tier 3 · base ($/mo)",2000],
+    ["bo3","Tier 3 · bounty ($/enrollment)",200],
+    ["r3","Tier 3 · residual ($/active/mo)",15],
+    ["outlay2","Site-2 startup outlay ($)",60000,"SITE 2"],
+    ["fixed2","Site-2 fixed + events / month ($)",14000],
+    ["newC2","Site-2 new patients/mo — Chris channels",10],
+    ["newR2","Site-2 new patients/mo — brand carryover",4],
+    ["churn2","Site-2 monthly churn (%)",1.5],
+    ["comp2","Site-2 Chris year-1 comp ($, Structure D restarts at Tier 1)",40000]
+  ];
+
+  var KEY = "rejuvPL";
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){}
+
+  function renderInputs(){
+    var html = '<tr><th class="col first"></th><th class="col">A</th><th class="col">B</th></tr>';
+    var rn = 0;
+    INPUTS.forEach(function(row){
+      var id = row[0], label = row[1], def = row[2], grp = row[3];
+      if(grp){ rn++; html += '<tr><td class="rn">' + rn + '</td><td class="grp" colspan="2">' + grp + '</td></tr>'; }
+      rn++;
+      var val = saved[id] !== undefined ? saved[id] : def;
+      html += '<tr><td class="rn">' + rn + '</td><td class="lbl">' + label + '</td>' +
+              '<td class="edit"><input type="number" step="any" id="' + id + '" value="' + val + '"></td></tr>';
+    });
+    $("inSheet").innerHTML = html;
+    INPUTS.forEach(function(row){
+      $(row[0]).addEventListener("input", function(){
+        saved[row[0]] = $(row[0]).value;
+        try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+        compute();
+      });
+    });
+  }
+
+  function model(){
+    var price = num("price"), addon = num("addon"), newC = num("newC"), newR = num("newR");
+    var churn = num("churn")/100, M = Math.max(6, Math.min(36, Math.round(num("months"))));
+    var varC = num("varCost"), F = num("fixed") + num("eventsBudget"), outlay = num("outlay");
+    var contrib = price + addon - varC;
+    var rows = [], p = 0, k = 0, cum = 0, op1 = 0, rev1 = 0, sumK1 = 0, beM = null;
+    for(var t = 1; t <= M; t++){
+      p = p*(1-churn) + newC + newR;
+      k = k*(1-churn) + newC;
+      var op = p*contrib - F;
+      cum += op - (t === 1 ? outlay : 0);
+      if(t <= 12){ op1 += op; rev1 += p*price; sumK1 += k; }
+      if(beM === null && op > 0) beM = t;
+      rows.push({t:t, p:p, k:k, rev:p*price, op:op, cum:cum});
+    }
+    var BE = contrib > 0 ? F/contrib : Infinity;
+    return {rows:rows, M:M, F:F, BE:BE, op1:op1, rev1:rev1, sumK1:sumK1,
+            p12:rows[Math.min(12, M)-1].p, pend:p, cum:cum, contrib:contrib, beM:beM};
+  }
+
+  function site2(){
+    var contrib = num("price") + num("addon") - num("varCost");
+    var F2 = num("fixed2"), out2 = num("outlay2");
+    var n2 = num("newC2") + num("newR2"), c2 = num("churn2")/100;
+    var M = Math.max(6, Math.min(36, Math.round(num("months"))));
+    var rows = [], p = 0, cum = 0, op1 = 0, pb = null, p12v = 0;
+    for(var t = 1; t <= M; t++){
+      p = p*(1-c2) + n2;
+      var op = p*contrib - F2;
+      cum += op - (t === 1 ? out2 : 0);
+      if(t <= 12){ op1 += op; if(t === 12) p12v = p; }
+      if(pb === null && cum > 0) pb = t;
+      rows.push({t:t, p:p, op:op, cum:cum});
+    }
+    var BE = contrib > 0 ? F2/contrib : Infinity;
+    return {rows:rows, p12:p12v, BE:BE, op1:op1, pb:pb, M:M};
+  }
+
+  function comp(m){
+    var A = num("baseA")*12 + num("shareA")/100*Math.max(0, m.op1);
+    var E1 = num("newC")*12;
+    var B = num("bountyB")*E1 + num("perMoB")*m.sumK1;
+    var C = num("eqC")/100*num("distC")/100*Math.max(0, m.op1);
+    var tier = E1 <= num("t1max") ? 1 : (E1 <= num("t2max") ? 2 : 3);
+    var D = num("b"+tier)*12 + num("bo"+tier)*E1 + num("r"+tier)*m.sumK1;
+    return {A:A, B:B, C:C, D:D, tier:tier, E1:E1};
+  }
+
+  function compute(){
+    var m = model(), s2 = site2(), c = comp(m);
+
+    var mh = '<tr><th class="col first"></th><th class="col">A</th><th class="col">B</th><th class="col">C</th><th class="col">D</th><th class="col">E</th><th class="col">F</th><th class="col">G</th><th class="col">H</th><th class="col">I</th></tr>' +
+      '<tr><td class="rn">1</td><td class="grp" colspan="4">SITE 1 · MONTHLY P&amp;L</td><td class="grp" colspan="5">SITE 2 · MONTHLY P&amp;L</td></tr>' +
+      '<tr><td class="rn">2</td><td class="lbl">Month</td><td class="lbl">Active patients</td><td class="lbl">His-channel pts</td><td class="lbl">Revenue</td><td class="lbl">Op profit</td><td class="lbl">Cum cash</td><td class="lbl">Patients</td><td class="lbl">Op profit</td><td class="lbl">Cum cash</td></tr>';
+    for(var i = 0; i < m.rows.length; i++){
+      var r = m.rows[i], s = s2.rows[i];
+      mh += '<tr><td class="rn">' + (i+3) + '</td>' +
+        '<td class="calc">' + r.t + '</td>' +
+        '<td class="calc">' + dec(r.p) + '</td>' +
+        '<td class="calc">' + dec(r.k) + '</td>' +
+        '<td class="calc">' + full(r.rev) + '</td>' +
+        '<td class="calc ' + (r.op >= 0 ? "pos" : "neg") + '">' + full(r.op) + '</td>' +
+        '<td class="calc ' + (r.cum >= 0 ? "pos" : "neg") + '">' + full(r.cum) + '</td>' +
+        '<td class="calc">' + dec(s.p) + '</td>' +
+        '<td class="calc ' + (s.op >= 0 ? "pos" : "neg") + '">' + full(s.op) + '</td>' +
+        '<td class="calc ' + (s.cum >= 0 ? "pos" : "neg") + '">' + full(s.cum) + '</td></tr>';
+    }
+    $("modelSheet").innerHTML = mh;
+
+    function row(rn, label, val, cls){ return '<tr><td class="rn">' + rn + '</td><td class="lbl">' + label + '</td><td class="calc' + (cls ? " " + cls : "") + '">' + val + '</td></tr>'; }
+    var sh = '<tr><th class="col first"></th><th class="col">A</th><th class="col">B</th></tr>';
+    var rn = 1;
+    sh += '<tr><td class="rn">' + (rn++) + '</td><td class="grp" colspan="2">KEY LINES — SITE 1</td></tr>';
+    sh += row(rn++, "Active patients, month 12", dec(m.p12));
+    sh += row(rn++, "Active patients, final month", dec(m.pend));
+    sh += row(rn++, "Breakeven patients", isFinite(m.BE) ? dec(m.BE) : "n/a");
+    sh += row(rn++, "Operating-profit breakeven month", m.beM ? ("month " + m.beM) : ("not within " + m.M));
+    sh += row(rn++, "Year-1 revenue", full(m.rev1));
+    sh += row(rn++, "Year-1 operating profit", full(m.op1), m.op1 >= 0 ? "pos" : "neg");
+    sh += row(rn++, "Cumulative cash at horizon (after outlay)", full(m.cum), m.cum >= 0 ? "pos" : "neg");
+    sh += row(rn++, "His-channel Y1 enrollments", int(c.E1));
+    sh += row(rn++, "His-channel Y1 revenue collected", full(m.sumK1*num("price")));
+    sh += '<tr><td class="rn">' + (rn++) + '</td><td class="grp" colspan="2">CHRIS YEAR-1 COMP VS. PRACTICE KEEPS</td></tr>';
+    sh += row(rn++, "A — Base + profit share: Chris / keeps", full(c.A) + "  /  " + full(m.op1 - c.A));
+    sh += row(rn++, "B — Channel bounty: Chris / keeps", full(c.B) + "  /  " + full(m.op1 - c.B));
+    sh += row(rn++, "C — Equity distribution: Chris / keeps", full(c.C) + "  /  " + full(m.op1 - c.C));
+    sh += row(rn++, "D — Tiered plan (Tier " + c.tier + " achieved): Chris / keeps", full(c.D) + "  /  " + full(m.op1 - c.D));
+    sh += '<tr><td class="rn">' + (rn++) + '</td><td class="grp" colspan="2">SITE 2</td></tr>';
+    sh += row(rn++, "Site-2 active patients, month 12", dec(s2.p12));
+    sh += row(rn++, "Site-2 breakeven patients", isFinite(s2.BE) ? dec(s2.BE) : "n/a");
+    sh += row(rn++, "Site-2 Y1 op profit after Chris comp", full(s2.op1 - num("comp2")), (s2.op1 - num("comp2")) >= 0 ? "pos" : "neg");
+    sh += row(rn++, "Site-2 outlay payback", s2.pb ? ("month " + s2.pb) : ("not within " + s2.M));
+    $("sumSheet").innerHTML = sh;
+  }
+
+  renderInputs();
+  compute();
+})();
+</script>
+<script>
+(function(){
+  var h = document.querySelector("header.top");
+  if(!h) return;
+  var KEY = "rejuvHeroCollapsed";
+  try{ if(localStorage.getItem(KEY) === "1") h.classList.add("collapsed"); }catch(e){}
+  h.addEventListener("click", function(ev){
+    if(ev.target.closest && ev.target.closest("input,button,a,select,textarea")) return;
+    h.classList.toggle("collapsed");
+    try{ localStorage.setItem(KEY, h.classList.contains("collapsed") ? "1" : "0"); }catch(e){}
+  });
+})();
+</script>
+<script>
+(function(){
+  /* ---------- collapsible sections ---------- */
+  var SKEY = "rejuvSections";
+  var saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(SKEY)) || {}; }catch(e){}
+  Array.prototype.forEach.call(document.querySelectorAll("section"), function(sec, i){
+    var h2 = sec.querySelector("h2");
+    if(!h2) return;
+    var id = sec.id || ("sec" + i);
+    if(saved[id]) sec.classList.add("seccollapsed");
+    h2.addEventListener("click", function(ev){
+      if(ev.target.closest && ev.target.closest("input,button,a,select,textarea")) return;
+      sec.classList.toggle("seccollapsed");
+      saved[id] = sec.classList.contains("seccollapsed");
+      try{ localStorage.setItem(SKEY, JSON.stringify(saved)); }catch(e){}
+    });
+  });
+
+  /* ---------- Testo ---------- */
+  var BRAIN = [
+    {k:[" hello "," hi "," hey "," yo "," sup ","greetings"], a:"Well well — Dr. Byron Vogt, Tracy Wheeler, and Alex, the LPN who started all of this by recommending Chris. Welcome. I'm Testo: xAI-flavored voice, garage-built brain, and I am ONLY allowed to talk about this website. Compensation? Marketing? The club with the basketball courts? Pick a lane below before I start monologuing."},
+    {k:["joke","funny","laugh","lol","adhd","squirrel","another one","another joke","make me laugh"], j:true},
+    {k:["comp","pay","tier","retainer","equity","bounty","structure","money","salary"], a:"Section 2 — the money menu, five flavors. A) base + profit share: safe, boring, decaf. B) channel bounty: Chris eats only what he kills. C) equity: marry the LLC. D) tiered performance — the recommended anchor — his pay unlocks in tiers ONLY after his channel has out-earned its cost, with quality gates so nobody pays for bad volume. E) retainer + tiers: the full growth-operator package. Every cell is editable because this is a negotiation, not a ransom note. Squirrel! — anyway, scroll up and type your own numbers in; the table recalculates live."},
+    {k:["number","model","breakeven","math","patient","profit","revenue","churn"], a:"Section 1 is the engine: about $250/patient/month, $40 add-on margin, $100 variable cost, $14k lean fixed costs. Breakeven lands under 80 patients at the defaults — the chart draws a dashed line so nobody has to trust vibes. Change ANY input and everything — year-1 revenue, all five comp structures, site-2 payback — recomputes instantly. It's a spreadsheet that went to finishing school."},
+    {k:["market","outreach","gym","police","fire","responder","channel","barber","employer","lead"], a:"Section 3, the outreach skeleton: police, fire & EMS get free on-site hormone screening as the front door; Club 7 next door and the Route 92 gyms run co-branded shred contests; trainers, chiros, and PTs join the Performance Partner program; barbershops get QR codes; employers get lunch-and-learns. Every channel carries a tracked code so the dashboard knows which door each patient walked through. And ZERO per-referral payments until counsel signs off — flat co-marketing only, because nobody's going to jail over a barbershop flyer."},
+    {k:["zoom","consult","journey","flow","intake","enroll"], a:"Section 4, the patient journey: lead → 15–20 minute Zoom with Chris (zero medical advice, pure enrollment craft) → intake + labs at 645 → provider visit with the DO/NP → enrollment with everything in writing → app onboarding. You three do medicine; Chris does literally everything else. That division of labor is the entire business plan."},
+    {k:["app","roadmap","feature","phase"], a:"Section 5, the app: Phase 1 is white-label — dose reminders, hematocrit safety alerts, macros, lab trends, renewal nudges, shred leaderboards, Zoom booking. Phase 2 gets a custom build once member count justifies it. You tag each feature Phase 1, Phase 2, or Later right on the sheet. It's dropdown democracy."},
+    {k:["645","club","event","basketball","party","dad day","fight"], a:"Section 6 — the 645 Club, my personal favorite because it's unhinged in a fiscally responsible way. Basketball leagues and fight nights in our OWN sports complex, shred bootcamps, Dad Days, first-responder tournaments, plus the offsite cigar-and-whiskey club night. The thesis: you can't out-franchise a 400-unit chain on clinical sameness, so you out-local it on belonging. Guests leave with screening vouchers; the app keeps them warm between events."},
+    {k:["service","menu","trt","prp","glp","weight","ed","peptide","nad"], a:"Section 7, the menu: core TRT with hematocrit as the safety gate, full health panels, cholesterol management, PRP joints, branded GLP-1s only — no compounded tirzepatide, compliance is sexy — ED program, NAD+/B12 pending sourcing, and the Rejuv Longevity program. Peptides stay deferred until FDA listings and written counsel sign-off. Nothing launches on a maybe, which I believe is your department's love language, Tracy."},
+    {k:["scale","site 2","site two","second location","expansion","smithville","platte","liberty"], a:"Section 8: site 2 is a trigger, not a date. All seven boxes first — 100+ patients, churn at or under 2% for six months, six profitable months, SOPs documented, a waitlist, NP #2 identified, and the club playbook running without Chris. Smithville or Platte City go first as satellites; Liberty is site 3, where we fight Gameday on their turf. The model says site 2 costs less and breaks even faster — the playbook is portable because Chris is."},
+    {k:["dashboard","scorecard","weekly","sync","friday","kpi"], a:"The other page — the Growth Dashboard: one row per week (leads, consults, labs, enrolls, cancels, actives, revenue, events, app downloads), eight KPI cards, four charts, and a sync code Chris texts around every Friday so everyone stares at the same numbers. Two minutes with the coordinators' figures and you're done. Update it Friday or the dashboard judges you. It judges anyway."},
+    {k:["p&l","p and l","profit and loss","old school","old-school","spreadsheet"], a:"You're literally on it — this page is the old-school P&L behind Section 1. Gold cells take your numbers; every other cell is locked mathematics that recomputes live. Monthly model for both sites, summary lines, comp structures A through D. It's the version for people who trust grid lines more than chatbots. Fair."},
+    {k:["send","summary","email","copy","sign"], a:"Section 10: one click assembles a text summary of every input, approval, and result on the sheet — copy it or fire it straight into an email to Chris. The whole site is engineered so this conversation ends with numbers, not vibes."},
+    {k:["who is","about chris","chris?"], a:"Chris Hubbel — non-clinical growth partner, and the guy Section 2 prices five different ways. His lanes: outreach, events, funnels, CRM, the app, the dashboard. Your lanes: medicine. My lane: this website. We're all very lane-disciplined here."},
+    {k:["capab","what can","what will","skill","seo","pixel","automat","hipaa","stack","agent"], a:"Section 9 is the what-I'll-do list, three pillars: Marketing — promos, SEO, guerrilla, partnerships, all built and run by him. Sales — the funnel dashboard, the Zoom consult process, goals-first closing with zero pressure scripts, and he'll train your coordinators on the same playbook. Operations — run the clinic like a fitness club minus the clinical: scheduling, capacity, retention systems, win-backs, SOPs ready for site 2. Underneath sits the stack: AI sales agents, automation, pixels and attribution, web development (this very site — hello), HIPAA-conscious ops. Scroll to 'What Chris brings' and watch Section 2 start looking like a discount."},
+    {k:["vogt","byron"," do ","doctor"], a:"Dr. Vogt! The DO of record. Your slice of this: the clinical menu in Section 7 and veto power over every marketing claim — Chris can't say a clinical word without provider blessing, it's written into Structure E. You practice medicine; the website practices arithmetic."},
+    {k:["tracy","wheeler"," np ","neuro","clinical director"], a:"Tracy Wheeler — NP, Clinical Director of a neurology department — which means you are professionally qualified to diagnose why a chatbot named Testo can't stay on topic. Your lanes per Structure E: protocols, formulary, patient eligibility, and claim approval. Everything else is Chris's problem. Beautifully partitioned, like a well-labeled nervous system."},
+    {k:["alex","lpn"], a:"Alex! The LPN who recommended Chris — which makes this entire meeting technically your fault. If Structure D performs the way Section 1 models, history remembers you as the hero of this story and Chris owes you a steak. It's not in the budget, but Section 1 has an events line. We'll call it marketing."}
+  ];
+  var JOKES = [
+    "Tracy runs a neurology department, so she spends all day on things that won't fire. I sell the other thing that won't fire. Same conversation, different head.",
+    "Neurologists and I are in the same business: performance issues. Hers are above the belt. Mine come with better margins and a basketball league.",
+    "Tracy can map every neural pathway in the human body. Her patients only ever ask about one pathway. It runs south, and Section 7 has it covered.",
+    "The brain has 86 billion neurons, and every guy in the consult is using maybe twelve of them until the labs come back. Then suddenly he's a biochemist.",
+    "A neurologist, a DO, and an LPN walk into a TRT proposal. The neurologist checks reflexes, the DO checks the formulary, and the LPN already knows this works. Alex has the best diagnostic instincts in the room.",
+    "What's the difference between a neurologist and a sales guy? One stimulates responses for a living. The other has a medical license.",
+    "The ED program: because 'it happens to everyone' stops being comforting around the sixth time.",
+    "Tadalafil — for when the spirit is willing but the flesh has filed a grievance.",
+    "Every consult starts with 'I'm just curious, asking for a friend' and ends with 'so how fast does this work.' Eleven minutes. I've timed it.",
+    "'How's it hanging' is the only question that's both an intake form and a lie detector.",
+    "We track adherence on the ED program. Adherence. Somebody in product naming knew EXACTLY what they were doing, and Section 1's events budget owes them a steak.",
+    "People ask if the ED program is a hard sell. No — it's a soft launch. That's the whole addressable market.",
+    "Section 7 sells confidence three ways: hormones, PRP, and the little blue co-pilot. One of those sells itself and STILL has better retention than most gyms.",
+    "TRT: it turns 'I'm just tired' from a diagnosis back into an excuse.",
+    "Gameday spent their money on man-cave decor. We're spending ours on a club, a complex, and prescription-grade confidence. They brought leather chairs to a sword fight.",
+    "Forty bucks a month of add-on margin to give a man his swagger back — cheapest renovation in America. The alternative is a boat."
+  ];
+  var FALLBACK = [
+    "Out of lane — I only know THIS website. Compensation walkthrough, marketing plan, 645 Club, the dashboard: pick one. Oh look, a lion.",
+    "I was told to stay on-script and the script is this site. Sections 2 and 3 are the greatest hits — ask about pay structures or the marketing plan before I start ranking sections by vibes.",
+    "Off-topic detected, ADHD engaged, redirecting: want the compensation tour, the outreach skeleton, or the part with the basketball courts? Choose quickly — I have the attention span of a golden retriever."
+  ];
+  var fb = 0, jk = 0;
+  function answer(q){
+    q = " " + q.toLowerCase().replace(/\s+/g, " ") + " ";
+    for(var i = 0; i < BRAIN.length; i++){
+      var ks = BRAIN[i].k;
+      for(var j = 0; j < ks.length; j++){
+        if(q.indexOf(ks[j]) >= 0) return BRAIN[i].j ? JOKES[(jk++) % JOKES.length] : BRAIN[i].a;
+      }
+    }
+    return FALLBACK[(fb++) % FALLBACK.length];
+  }
+
+  /* ---------- Testo voice (browser speech engine + xAI) ---------- */
+  var muted = false;
+  try{ muted = localStorage.getItem("testoMuted") === "1"; }catch(e){}
+  var voice = null;
+  function pickVoice(){
+    if(!("speechSynthesis" in window)) return;
+    var vs = speechSynthesis.getVoices().filter(function(v){ return v.lang.indexOf("en") === 0; });
+    var prefs = ["Microsoft Guy","Microsoft David","Google US English","Alex","Daniel","Fred","Male","en-US"];
+    for(var i = 0; i < prefs.length; i++){
+      for(var j = 0; j < vs.length; j++){
+        if(vs[j].name.indexOf(prefs[i]) >= 0){ voice = vs[j]; return; }
+      }
+    }
+    voice = vs[0] || null;
+  }
+  if("speechSynthesis" in window){
+    pickVoice();
+    speechSynthesis.onvoiceschanged = pickVoice;
+  }
+  function cleanForSpeech(t){
+    return t
+      .replace(/\$(\d+(?:\.\d+)?)K\b/g, "$1 thousand dollars")
+      .replace(/\$(\d+(?:\.\d+)?)M\b/g, "$1 million dollars")
+      .replace(/\$(\d+(?:\.\d+)?)/g, "$1 dollars")
+      .replace(/(\d+(?:\.\d+)?)K\b/g, "$1 thousand")
+      .replace(/—/g, ", ").replace(/→/g, " then ").replace(/&/g, " and ")
+      .replace(/≤/g, " or less ").replace(/≥/g, " or more ")
+      .replace(/~/g, "about ").replace(/·/g, ",").replace(/\//g, " ")
+      .replace(/\s+/g, " ").trim();
+  }
+  var XAI_VOICE_URL = "https://limenhelix.com/api/orb-voice?voice=zenith&text=";
+  var xaiAudio = null;
+  function stopVoice(){
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+    if(xaiAudio){ try{ xaiAudio.pause(); }catch(e){} xaiAudio = null; }
+  }
+  function speakBrowser(clean){
+    if(muted || !("speechSynthesis" in window)) return;
+    var u = new SpeechSynthesisUtterance(clean);
+    if(voice) u.voice = voice;
+    u.pitch = 0.85;
+    u.rate = 1.04;
+    speechSynthesis.speak(u);
+  }
+  function speak(t){
+    if(muted) return;
+    stopVoice();
+    var clean = cleanForSpeech(t);
+    if(clean.length > 1300) clean = clean.slice(0, 1300);
+    if("speechSynthesis" in window) speechSynthesis.resume();
+    xaiAudio = new Audio(XAI_VOICE_URL + encodeURIComponent(clean));
+    xaiAudio.onerror = function(){ xaiAudio = null; speakBrowser(clean); };
+    var pr = xaiAudio.play();
+    if(pr && pr.catch) pr.catch(function(){ if(xaiAudio){ xaiAudio = null; speakBrowser(clean); } });
+  }
+
+  var fab = document.createElement("button");
+  fab.className = "chrisai-fab";
+  fab.textContent = "🦁 Ask Testo";
+  var panel = document.createElement("div");
+  panel.className = "chrisai-panel";
+  panel.innerHTML =
+    '<div class="cai-head">Testo<span>real xAI Grok voice (zenith), garage-grade brain — knows THIS site and nothing else</span><button class="cai-mute" title="Voice on/off">🔊</button></div>' +
+    '<div class="cai-log"></div>' +
+    '<div class="cai-chips"></div>' +
+    '<div class="cai-inrow"><input type="text" placeholder="Ask about the plan…"><button>Ask</button></div>';
+  document.body.appendChild(fab);
+  document.body.appendChild(panel);
+
+  var log = panel.querySelector(".cai-log");
+  var input = panel.querySelector("input");
+  var btn = panel.querySelector("button");
+  var chips = panel.querySelector(".cai-chips");
+  var greeted = false;
+  var muteBtn = panel.querySelector(".cai-mute");
+  muteBtn.textContent = muted ? "🔇" : "🔊";
+  muteBtn.addEventListener("click", function(ev){
+    ev.stopPropagation();
+    muted = !muted;
+    muteBtn.textContent = muted ? "🔇" : "🔊";
+    try{ localStorage.setItem("testoMuted", muted ? "1" : "0"); }catch(e){}
+    if(muted) stopVoice();
+  });
+
+  function add(cls, text){
+    var d = document.createElement("div");
+    d.className = "cai-msg " + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    if(cls === "cai-bot") speak(text);
+  }
+  function ask(q){
+    if(!q) return;
+    add("cai-user", q);
+    input.value = "";
+    setTimeout(function(){ add("cai-bot", answer(q)); }, 350);
+  }
+  ["Walk me through compensation","How are we marketing?","What's the 645 Club?","Explain the dashboard","Tell me a joke"].forEach(function(c){
+    var b = document.createElement("button");
+    b.className = "cai-chip";
+    b.textContent = c;
+    b.addEventListener("click", function(){ ask(c); });
+    chips.appendChild(b);
+  });
+  fab.addEventListener("click", function(){
+    panel.classList.toggle("open");
+    if(!panel.classList.contains("open")) stopVoice();
+    if(panel.classList.contains("open") && !greeted){
+      greeted = true;
+      add("cai-bot", "Dr. Vogt. Tracy. Alex. Welcome — I'm Testo, the tour guide living inside this website: Grok-style voice, local brain, clinical attention span. I know ONLY what's on these pages, and I will walk you through all of it — compensation, marketing, the club, the dashboard — with jokes. Tap a question below; I charge by the tangent.");
+    }
+  });
+  btn.addEventListener("click", function(){ ask(input.value.trim()); });
+  input.addEventListener("keydown", function(ev){ if(ev.key === "Enter") ask(input.value.trim()); });
+})();
+</script>
+</body>
+</html>
