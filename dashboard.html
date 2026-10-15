@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#141a26">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Rejuv Growth Dashboard</title>
+<style>
+  :root{--ink:#16181d;--sub:#5b6472;--line:#e2e6ec;--bg:#f7f8fa;--card:#fff;--blue:#1f5fd6;--red:#b3261e;--green:#1a7f4b;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 80px;}
+  header.top{background:linear-gradient(135deg,#141a26,#1f2c47);color:#fff;border-radius:14px;padding:22px 22px 18px;margin-bottom:16px;}
+  header.top h1{font-size:22px;}
+  header.top p{color:#c4cede;font-size:13px;margin-top:4px;}
+  .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:11.5px;padding:2px 9px;border-radius:999px;margin-bottom:10px;}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+  h2{font-size:17px;margin-bottom:3px;}
+  h2 .num{color:var(--blue);margin-right:5px;}
+  .lede{font-size:13px;color:var(--sub);margin-bottom:12px;max-width:780px;}
+  h3{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--sub);margin:14px 0 8px;}
+  .grid{display:grid;gap:10px;}
+  .grid.set{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+  .grid.stats{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+  label{display:block;font-size:12px;color:var(--sub);margin-bottom:2px;}
+  input,textarea{padding:7px 9px;border:1px solid #cfd6e0;border-radius:8px;font-size:14px;background:#fff;color:var(--ink);font-variant-numeric:tabular-nums;}
+  input:focus,textarea:focus{outline:2px solid var(--blue);border-color:var(--blue);}
+  .stat{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fbfcfe;}
+  .stat .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .stat .k{font-size:11.5px;color:var(--sub);margin-top:1px;}
+  .up{color:var(--green);} .down{color:var(--red);}
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .chartbox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .chartbox .t{font-size:12.5px;font-weight:600;margin-bottom:2px;}
+  .chartbox .s{font-size:11px;color:var(--sub);margin-bottom:4px;}
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;font-size:13px;}
+  th,td{padding:6px 7px;border-bottom:1px solid var(--line);text-align:left;}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--sub);font-weight:600;white-space:nowrap;}
+  td input{width:74px;padding:5px 7px;font-size:13.5px;}
+  td input.dt{width:118px;}
+  .btn{display:inline-block;background:var(--ink);color:#fff;border:none;font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:9px;cursor:pointer;}
+  .btn.alt{background:#fff;color:var(--ink);border:1px solid #b9c2cf;}
+  .btn.sm{padding:5px 10px;font-size:12px;}
+  .btn.del{background:#fff;color:var(--red);border:1px solid #e5b6b3;}
+  .rowbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+  textarea{width:100%;min-height:110px;padding:9px 11px;border:1px solid #cfd6e0;border-radius:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;margin-top:10px;}
+  .note{font-size:12px;color:var(--sub);background:#f2f5f9;border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin-top:10px;}
+  .msg{font-size:12px;color:var(--green);margin-left:8px;}
+  .empty{color:var(--sub);font-size:13px;padding:14px 0;}
+  svg text{font-family:inherit;}
+  @media (max-width:720px){
+    .wrap{padding:10px 8px 60px;}
+    header.top{padding:16px 14px;border-radius:12px;}
+    header.top h1{font-size:18px;}
+    section{padding:14px 12px;border-radius:12px;}
+    .grid.set{grid-template-columns:1fr 1fr;}
+    .grid.stats{grid-template-columns:repeat(2,1fr);}
+    .charts{grid-template-columns:1fr;}
+    .tblwrap table{min-width:640px;}
+    input,textarea{font-size:16px;}
+    td input{font-size:16px;}
+    .rowbtns{flex-direction:column;}
+    .stat .v{font-size:18px;}
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="badge">Weekly growth &amp; activity · 645 State Rte 92</div>
+  <h1>Rejuv Growth Dashboard</h1>
+  <p>The shared pulse: leads, consults, labs, enrollments, revenue, events, and app activity — one row per week. Chris updates it every Friday; partners check it any time.</p>
+</header>
+
+<!-- SETTINGS -->
+<section id="settings">
+  <h2><span class="num">⚙</span>Model settings</h2>
+  <p class="lede">Used for the breakeven line and revenue math. Same numbers as the partnership sheet.</p>
+  <div class="grid set">
+    <div><label>Monthly price per patient ($)</label><input type="number" id="sPrice" value="249.92" step="0.01"></div>
+    <div><label>Variable cost / patient-mo ($)</label><input type="number" id="sVar" value="100"></div>
+    <div><label>Fixed + events / month ($)</label><input type="number" id="sFixed" value="14800"></div>
+    <div><label>Target active patients</label><input type="number" id="sTarget" value="100"></div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section id="kpis">
+  <h2><span class="num">▦</span>This week at a glance</h2>
+  <div class="grid stats">
+    <div class="stat"><div class="v" id="kAct">–</div><div class="k">active patients (end of week)</div></div>
+    <div class="stat"><div class="v" id="kEnr">–</div><div class="k">enrollments this week</div></div>
+    <div class="stat"><div class="v" id="kRev">–</div><div class="k">revenue collected this week</div></div>
+    <div class="stat"><div class="v" id="kCum">–</div><div class="k">cumulative revenue</div></div>
+    <div class="stat"><div class="v" id="kConv">–</div><div class="k">lead → enroll conversion (all-time)</div></div>
+    <div class="stat"><div class="v" id="kBE">–</div><div class="k">vs. breakeven (patients)</div></div>
+    <div class="stat"><div class="v" id="kEv">–</div><div class="k">events held (all-time)</div></div>
+    <div class="stat"><div class="v" id="kDl">–</div><div class="k">app downloads (all-time)</div></div>
+  </div>
+</section>
+
+<!-- CHARTS -->
+<section id="charts">
+  <h2><span class="num">↗</span>Trends</h2>
+  <div class="charts">
+    <div class="chartbox"><div class="t">Active patients</div><div class="s">dashed line = breakeven · dotted = target</div><svg id="cAct" viewBox="0 0 420 190" width="100%"></svg></div>
+    <div class="chartbox"><div class="t">Weekly enrollments vs. cancellations</div><div class="s">blue = enrolled · red = cancelled</div><svg id="cEnr" viewBox="0 0 420 190" width="100%"></svg></div>
+    <div class="chartbox"><div class="t">Cumulative revenue</div><div class="s">cash collected to date</div><svg id="cRev" viewBox="0 0 420 190" width="100%"></svg></div>
+    <div class="chartbox"><div class="t">Funnel — all time</div><div class="s">leads → consults → labs → enrollments</div><svg id="cFun" viewBox="0 0 420 190" width="100%"></svg></div>
+  </div>
+</section>
+
+<!-- WEEKLY ENTRY -->
+<section id="entry">
+  <h2><span class="num">✎</span>Weekly scorecard</h2>
+  <p class="lede">One row per week, newest first. Fill it in every Friday — it takes two minutes with the numbers from the coordinators.</p>
+  <div class="tblwrap"><table>
+    <thead><tr>
+      <th>Week ending</th><th>Leads</th><th>Consults</th><th>Labs drawn</th><th>Enrolls</th><th>Cancels</th><th>Actives EOW</th><th>Revenue $</th><th>Events</th><th>App DLs</th><th></th>
+    </tr></thead>
+    <tbody id="weekBody"></tbody>
+  </table></div>
+  <div class="empty" id="emptyMsg">No weeks yet — add the first one.</div>
+  <div class="rowbtns">
+    <button class="btn" id="btnAdd">+ Add this week</button>
+  </div>
+</section>
+
+<!-- SYNC -->
+<section id="sync">
+  <h2><span class="num">⇄</span>Sync between devices</h2>
+  <p class="lede">Data lives in this browser only. To move it between phones or share with a partner: copy the sync code on the updated device, send it (text/email), paste it below on the other device, and import. Last import wins.</p>
+  <div class="rowbtns">
+    <button class="btn alt" id="btnExport">Copy sync code</button>
+    <button class="btn alt" id="btnImport">Import pasted code</button>
+    <span class="msg" id="syncMsg"></span>
+  </div>
+  <textarea id="syncBox" placeholder="Sync code appears here (export) — or paste a received code here (import)."></textarea>
+  <div class="note"><b>The weekly ritual:</b> Chris updates Friday → copies sync code → texts it to the DO/NP (or posts a screenshot of this page to the group chat). Everyone always sees the same numbers.</div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function num(id){ var v = parseFloat($(id).value); return isNaN(v) ? 0 : v; }
+  function setText(id, t){ $(id).textContent = t; }
+  function money(n){ var a = Math.abs(n); var s = a >= 1000 ? (a/1000).toFixed(a >= 100000 ? 0 : 1) + "k" : a.toFixed(0); return (n < 0 ? "-$" : "$") + s; }
+  function full(n){ return (n < 0 ? "-$" : "$") + Math.round(Math.abs(n)).toLocaleString("en-US"); }
+  function int(n){ return Math.round(n).toLocaleString("en-US"); }
+  function today(){ var d = new Date(); return d.toISOString().slice(0, 10); }
+
+  var FIELDS = ["sPrice","sVar","sFixed","sTarget"];
+  var WCOLS = ["d","leads","cons","labs","enr","can","act","rev","ev","dl"];
+  var state = { settings: {}, weeks: [] };
+
+  function save(){ try{ localStorage.setItem("rejuvDash", JSON.stringify(state)); }catch(e){} }
+  function load(){
+    try{
+      var s = JSON.parse(localStorage.getItem("rejuvDash"));
+      if(s){ state = s; }
+    }catch(e){}
+    FIELDS.forEach(function(f){ if(state.settings[f] !== undefined) $(f).value = state.settings[f]; });
+  }
+
+  function totals(){
+    var T = {leads:0, cons:0, labs:0, enr:0, can:0, rev:0, ev:0, dl:0};
+    state.weeks.forEach(function(w){ WCOLS.forEach(function(c){ if(c !== "d") T[c] += (+w[c] || 0); }); });
+    return T;
+  }
+
+  /* ---------- KPIs ---------- */
+  function kpis(){
+    var T = totals();
+    var wk = state.weeks[0];
+    var be = (num("sPrice") - num("sVar")) > 0 ? (num("sFixed") / (num("sPrice") - num("sVar"))) : Infinity;
+    setText("kAct", wk ? int(+wk.act || 0) : "–");
+    setText("kEnr", wk ? int(+wk.enr || 0) : "–");
+    setText("kRev", wk ? full(+wk.rev || 0) : "–");
+    setText("kCum", full(T.rev));
+    setText("kConv", T.leads > 0 ? ((T.enr / T.leads) * 100).toFixed(1) + "%" : "–");
+    var act = wk ? (+wk.act || 0) : 0;
+    var diff = act - be;
+    var el = $("kBE");
+    el.textContent = isFinite(be) ? (diff >= 0 ? "+" : "") + int(diff) : "–";
+    el.className = "v " + (diff >= 0 ? "up" : "down");
+    setText("kEv", int(T.ev));
+    setText("kDl", int(T.dl));
+  }
+
+  /* ---------- charts ---------- */
+  function xyChart(svgId, series, opts){
+    var svg = $(svgId), W = 420, H = 190, pl = 44, pr = 10, pt = 8, pb = 20;
+    var iw = W - pl - pr, ih = H - pt - pb;
+    var all = [];
+    series.forEach(function(s){ s.data.forEach(function(v){ all.push(v); }); });
+    (opts.refs || []).forEach(function(r){ all.push(r.v); });
+    var mn = Math.min(0, Math.min.apply(null, all)), mx = Math.max.apply(null, all.concat([1]));
+    var n = Math.max.apply(null, series.map(function(s){ return s.data.length; }).concat([2]));
+    var x = function(i){ return pl + iw * i / (n - 1); };
+    var y = function(v){ return pt + ih * (1 - (v - mn) / (mx - mn)); };
+    var s = "";
+    for(var g = 0; g <= 3; g++){
+      var gv = mn + (mx - mn) * g / 3, gy = y(gv);
+      s += '<line x1="' + pl + '" y1="' + gy + '" x2="' + (W - pr) + '" y2="' + gy + '" stroke="#e2e6ec" stroke-width="0.6"/>';
+      s += '<text x="' + (pl - 4) + '" y="' + (gy + 3) + '" text-anchor="end" font-size="8.5" fill="#8a93a3">' + (opts.fmt || int)(gv) + '</text>';
+    }
+    (opts.refs || []).forEach(function(r){
+      var ry = y(r.v);
+      s += '<line x1="' + pl + '" y1="' + ry + '" x2="' + (W - pr) + '" y2="' + ry + '" stroke="' + r.color + '" stroke-width="1" stroke-dasharray="' + (r.dash || "5 4") + '"/>';
+      s += '<text x="' + (W - pr - 3) + '" y="' + (ry - 4) + '" text-anchor="end" font-size="8.5" fill="' + r.color + '">' + r.label + '</text>';
+    });
+    series.forEach(function(sr){
+      if(sr.type === "bar"){
+        var bw = iw / n * 0.3;
+        sr.data.forEach(function(v, i){
+          var by = y(Math.max(0, v)), bh = Math.abs(y(v) - y(0));
+          s += '<rect x="' + (x(i) - bw - 2) + '" y="' + by + '" width="' + bw + '" height="' + Math.max(bh, 0.5) + '" rx="1.5" fill="' + sr.color + '"/>';
+        });
+      } else {
+        var pts = sr.data.map(function(v, i){ return x(i) + "," + y(v); }).join(" ");
+        s += '<polyline points="' + pts + '" fill="none" stroke="' + sr.color + '" stroke-width="2"/>';
+        var li = sr.data[sr.data.length - 1];
+        if(li !== undefined){
+          s += '<circle cx="' + x(sr.data.length - 1) + '" cy="' + y(li) + '" r="2.6" fill="' + sr.color + '"/>';
+          s += '<text x="' + (x(sr.data.length - 1) - 5) + '" y="' + (y(li) - 6) + '" text-anchor="end" font-size="9" fill="#16181d" font-weight="600">' + (opts.fmt || int)(li) + '</text>';
+        }
+      }
+    });
+    svg.innerHTML = s;
+  }
+
+  function charts(){
+    var be = (num("sPrice") - num("sVar")) > 0 ? (num("sFixed") / (num("sPrice") - num("sVar"))) : null;
+    var chrono = state.weeks.slice().reverse();
+    if(chrono.length < 1){
+      ["cAct","cEnr","cRev","cFun"].forEach(function(id){ $(id).innerHTML = '<text x="20" y="90" font-size="11" fill="#8a93a3">Add weeks to see trends</text>'; });
+      return;
+    }
+    xyChart("cAct", [{data: chrono.map(function(w){ return +w.act || 0; }), color: "#1f5fd6"}], {
+      refs: [be !== null ? {v: be, color: "#5b6472", label: "breakeven " + int(be)} : null, {v: num("sTarget"), color: "#1a7f4b", label: "target " + int(num("sTarget")), dash: "2 3"}].filter(Boolean)
+    });
+    xyChart("cEnr", [{type: "bar", data: chrono.map(function(w){ return +w.enr || 0; }), color: "#1f5fd6"},
+                     {type: "bar", data: chrono.map(function(w){ return +w.can || 0; }), color: "#b3261e"}], {});
+    var cum = 0;
+    xyChart("cRev", [{data: chrono.map(function(w){ cum += (+w.rev || 0); return cum; }), color: "#1a7f4b"}], {fmt: money});
+    var T = totals();
+    var stages = [["Leads", T.leads], ["Consults", T.cons], ["Labs", T.labs], ["Enrolls", T.enr]];
+    var svg = $("cFun"), W = 420, H = 190, max = Math.max.apply(null, stages.map(function(s){ return s[1]; }).concat([1]));
+    var fs = "";
+    stages.forEach(function(st, i){
+      var y = 18 + i * 42;
+      var w = (W - 150) * st[1] / max;
+      fs += '<text x="8" y="' + (y + 15) + '" font-size="10" fill="#5b6472">' + st[0] + '</text>';
+      fs += '<rect x="80" y="' + y + '" width="' + Math.max(w, 1) + '" height="22" rx="3" fill="#1f5fd6" opacity="' + (1 - i * 0.18) + '"/>';
+      fs += '<text x="' + (84 + Math.max(w, 1)) + '" y="' + (y + 15) + '" font-size="10" fill="#16181d" font-weight="600">' + int(st[1]) + '</text>';
+      if(i > 0 && stages[i-1][1] > 0){
+        fs += '<text x="' + (W - 8) + '" y="' + (y + 15) + '" text-anchor="end" font-size="9" fill="#8a93a3">' + ((st[1] / stages[i-1][1]) * 100).toFixed(0) + "% of " + stages[i-1][0].toLowerCase() + "</text>";
+      }
+    });
+    $("cFun").innerHTML = fs;
+  }
+
+  /* ---------- week table ---------- */
+  function renderWeeks(){
+    var tb = $("weekBody");
+    tb.innerHTML = state.weeks.map(function(w, i){
+      var cells = WCOLS.map(function(c){
+        var cls = c === "d" ? "dt" : "";
+        var step = c === "rev" ? ' step="1"' : '';
+        return '<td><input class="wk" data-i="' + i + '" data-c="' + c + '" type="' + (c === "d" ? "date" : "number") + '" value="' + (w[c] || (c === "d" ? "" : 0)) + '" style="width:' + (c === "d" ? 122 : 64) + 'px"' + step + '></td>';
+      }).join("");
+      return "<tr>" + cells + '<td><button class="btn sm del" data-del="' + i + '">✕</button></td></tr>';
+    }).join("");
+    $("emptyMsg").style.display = state.weeks.length ? "none" : "block";
+    Array.prototype.forEach.call(document.querySelectorAll(".wk"), function(inp){
+      inp.addEventListener("input", function(){
+        state.weeks[+inp.getAttribute("data-i")][inp.getAttribute("data-c")] = inp.value;
+        save(); kpis(); charts();
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-del]"), function(b){
+      b.addEventListener("click", function(){
+        if(confirm("Delete this week?")){
+          state.weeks.splice(+b.getAttribute("data-del"), 1);
+          save(); renderWeeks(); kpis(); charts();
+        }
+      });
+    });
+  }
+
+  $("btnAdd").addEventListener("click", function(){
+    var existing = state.weeks.map(function(w){ return w.d; });
+    var d = today();
+    if(existing.indexOf(d) >= 0){ alert("A row for " + d + " already exists."); return; }
+    var w = {d: d};
+    WCOLS.forEach(function(c){ if(c !== "d") w[c] = 0; });
+    state.weeks.unshift(w);
+    save(); renderWeeks(); kpis(); charts();
+    var first = document.querySelector(".wk"); if(first) first.focus();
+  });
+
+  /* ---------- sync ---------- */
+  function flash(t){ var m = $("syncMsg"); m.textContent = t; setTimeout(function(){ m.textContent = ""; }, 2500); }
+  $("btnExport").addEventListener("click", function(){
+    var code = "REJUVDASH1:" + btoa(unescape(encodeURIComponent(JSON.stringify(state))));
+    $("syncBox").value = code;
+    var done = function(){ flash("sync code copied — text it to your partners"); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(done, function(){ $("syncBox").select(); document.execCommand("copy"); done(); });
+    } else { $("syncBox").select(); document.execCommand("copy"); done(); }
+  });
+  $("btnImport").addEventListener("click", function(){
+    var raw = $("syncBox").value.trim();
+    if(!raw){ flash("paste a sync code first"); return; }
+    try{
+      var json = raw.indexOf("REJUVDASH1:") === 0 ? raw.slice(11) : raw;
+      var s = JSON.parse(decodeURIComponent(escape(atob(json))));
+      if(!s.weeks || !s.settings) throw new Error("bad payload");
+      state = s;
+      FIELDS.forEach(function(f){ if(state.settings[f] !== undefined) $(f).value = state.settings[f]; });
+      save(); renderWeeks(); kpis(); charts();
+      flash("imported " + state.weeks.length + " weeks");
+    }catch(e){ alert("That sync code didn't parse — make sure you copied the whole thing."); }
+  });
+
+  FIELDS.forEach(function(f){ $(f).addEventListener("input", function(){ state.settings[f] = $(f).value; save(); kpis(); charts(); }); });
+
+  load();
+  renderWeeks(); kpis(); charts();
+})();
+</script>
+</body>
+</html>
