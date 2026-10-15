@@ -14,7 +14,7 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); line-height:1.5; background:#0b0d12 url("lions-bg.webp") center 20%/cover no-repeat fixed;}
-  body::before{content:""; position:fixed; inset:0; z-index:-1; background:rgba(10,12,18,.58);}
+  body::before{content:""; position:fixed; inset:0; z-index:-1; background:rgba(10,12,18,.42);}
   .wrap{max-width:1100px; margin:0 auto; padding:24px 20px 80px;}
   header.top{position:relative; cursor:pointer; background:linear-gradient(135deg,rgba(20,26,38,.38),rgba(31,44,71,.38)); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.16); color:#fff; border-radius:14px; padding:28px 28px 24px; margin-bottom:20px; text-shadow:0 1px 4px rgba(0,0,0,.55);}
   header.top .toggle{position:absolute; top:16px; right:18px; color:#c4cede; font-size:15px; user-select:none; transition:transform .25s;}
@@ -24,10 +24,13 @@
   header.top h1{font-size:24px; font-weight:700; letter-spacing:.2px;}
   header.top p{color:#c4cede; font-size:14px; margin-top:6px; max-width:760px;}
   .badge{display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:12px; padding:3px 10px; border-radius:999px; margin-bottom:12px;}
-  nav{position:sticky; top:0; z-index:10; background:rgba(247,248,250,.92); backdrop-filter:blur(6px); display:flex; gap:8px; flex-wrap:wrap; padding:10px 0; margin-bottom:16px;}
-  nav a{font-size:13px; color:var(--sub); text-decoration:none; border:1px solid var(--line); background:#fff; padding:6px 12px; border-radius:999px;}
-  nav a:hover{color:var(--ink); border-color:#b9c2cf;}
-  section{background:rgba(255,255,255,.6); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,.28);}
+  nav{position:sticky; top:0; z-index:10; background:rgba(15,19,29,.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); display:flex; gap:8px; flex-wrap:wrap; padding:10px 0; margin-bottom:16px;}
+  nav a{font-size:13px; color:#c4cede; text-decoration:none; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); padding:6px 12px; border-radius:999px;}
+  nav a:hover{color:#fff; border-color:rgba(212,175,55,.6);}
+  section{background:rgba(15,19,29,.5); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:22px 24px; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,.28); --ink:#eef1f6; --sub:#b6bfcc; --line:rgba(255,255,255,.16); color:#eef1f6;}
+  section input, section select, section textarea{color:#16181d; background:#fff;}
+  section h2 .num{color:#6ea8ff;}
+  section svg text{fill:#c8d0dc;}
   section h2{cursor:pointer; user-select:none; position:relative; padding-right:28px;}
   section h2 .sectoggle{position:absolute; right:2px; top:3px; color:var(--sub); font-size:15px; transition:transform .25s;}
   section.seccollapsed h2 .sectoggle{transform:rotate(-90deg);}
@@ -43,7 +46,7 @@
   label{display:block; font-size:12.5px; color:var(--sub); margin-bottom:3px;}
   input[type=number], input[type=text], input[type=email]{width:100%; padding:8px 10px; border:1px solid #cfd6e0; border-radius:8px; font-size:14px; background:#fff; color:var(--ink);}
   input:focus{outline:2px solid var(--accent); outline-offset:0; border-color:var(--accent);}
-  .stat{border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:rgba(251,252,254,.55);}
+  .stat{border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:rgba(255,255,255,.07);}
   .stat .v{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums;}
   .stat .k{font-size:12px; color:var(--sub); margin-top:2px;}
   .pos{color:var(--good);} .neg{color:#b3261e;}
@@ -71,7 +74,7 @@
   .btn:hover{opacity:.88;}
   .rowbtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
   textarea{width:100%; min-height:220px; padding:10px 12px; border:1px solid #cfd6e0; border-radius:10px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.55; margin-top:14px;}
-  .note{font-size:12.5px; color:var(--sub); background:rgba(242,245,249,.55); border:1px solid var(--line); border-radius:8px; padding:9px 12px; margin-top:12px;}
+  .note{font-size:12.5px; color:var(--sub); background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:8px; padding:9px 12px; margin-top:12px;}
   .savemsg{font-size:12px; color:var(--good); margin-left:10px;}
   svg text{font-family:inherit;}
   .tblwrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
@@ -98,7 +101,7 @@
     th, td{padding:8px;}
     input[type=number], input[type=text], input[type=email]{font-size:16px;}
   }
-  @media print{ nav,.rowbtns,textarea,body::before,.chrisai-fab,.chrisai-panel{display:none;} body{background:#fff;} section{break-inside:avoid; box-shadow:none;} section .secbody{max-height:none !important; opacity:1 !important;} }
+  @media print{ nav,.rowbtns,textarea,body::before,.chrisai-fab,.chrisai-panel{display:none;} body{background:#fff;} section{break-inside:avoid; box-shadow:none; background:#fff !important; color:#16181d !important; --ink:#16181d; --sub:#5b6472; --line:#e2e6ec;} section .secbody{max-height:none !important; opacity:1 !important;} }
   .chrisai-fab{position:fixed; right:18px; bottom:18px; z-index:60; background:linear-gradient(135deg,#141a26,#1f2c47); color:#fff; border:1px solid rgba(212,175,55,.65); font-size:14px; font-weight:600; padding:12px 18px; border-radius:999px; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.45); font-family:inherit;}
   .chrisai-fab:hover{border-color:#d4af37;}
   .chrisai-panel{position:fixed; right:18px; bottom:78px; z-index:60; width:min(370px,calc(100vw - 36px)); height:450px; max-height:72vh; background:rgba(20,26,38,.93); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(212,175,55,.45); border-radius:16px; display:none; flex-direction:column; overflow:hidden; box-shadow:0 18px 44px rgba(0,0,0,.55); color:#e8ecf3;}
