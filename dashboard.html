@@ -21,7 +21,7 @@
   header.top h1{font-size:22px;}
   header.top p{color:#c4cede;font-size:13px;margin-top:4px;}
   .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:11.5px;padding:2px 9px;border-radius:999px;margin-bottom:10px;}
-  section{background:rgba(255,255,255,.87);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);}
+  section{background:rgba(255,255,255,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);}
   section h2{cursor:pointer;user-select:none;position:relative;padding-right:26px;}
   section h2 .sectoggle{position:absolute;right:0;top:2px;color:var(--sub);font-size:14px;transition:transform .25s;}
   section.seccollapsed h2 .sectoggle{transform:rotate(-90deg);}
@@ -37,7 +37,7 @@
   label{display:block;font-size:12px;color:var(--sub);margin-bottom:2px;}
   input,textarea{padding:7px 9px;border:1px solid #cfd6e0;border-radius:8px;font-size:14px;background:#fff;color:var(--ink);font-variant-numeric:tabular-nums;}
   input:focus,textarea:focus{outline:2px solid var(--blue);border-color:var(--blue);}
-  .stat{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fbfcfe;}
+  .stat{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:rgba(251,252,254,.55);}
   .stat .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;}
   .stat .k{font-size:11.5px;color:var(--sub);margin-top:1px;}
   .up{color:var(--green);} .down{color:var(--red);}
@@ -57,7 +57,7 @@
   .btn.del{background:#fff;color:var(--red);border:1px solid #e5b6b3;}
   .rowbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
   textarea{width:100%;min-height:110px;padding:9px 11px;border:1px solid #cfd6e0;border-radius:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;margin-top:10px;}
-  .note{font-size:12px;color:var(--sub);background:#f2f5f9;border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin-top:10px;}
+  .note{font-size:12px;color:var(--sub);background:rgba(242,245,249,.55);border:1px solid var(--line);border-radius:8px;padding:8px 11px;margin-top:10px;}
   .msg{font-size:12px;color:var(--green);margin-left:8px;}
   .empty{color:var(--sub);font-size:13px;padding:14px 0;}
   svg text{font-family:inherit;}
@@ -406,25 +406,29 @@
     });
   });
 
-  /* ---------- ChrisAI ---------- */
+  /* ---------- Testo ---------- */
   var BRAIN = [
-    {k:["who is","who's chris","about chris"], a:"Chris Hubbel — Rejuv's non-clinical growth partner and the reason this website exists. 12+ years leading people, 30 years in retention-driven businesses, and 100% of the personality in this chat window."},
-    {k:["track record","numbers","results","sales","accomplish","prove"], a:"Where do I start? $446K closed in a single month — 138% of target (the target has since requested a transfer). Cut cancellations 18% at a $3M-a-year Gold's Gym. Kept 85% of his accounts through a major market disruption. Beat quarterly revenue targets by 22% across three locations. Seven National Sales Awards, including Million Dollar Producer. The man is a spreadsheet with charisma."},
-    {k:["retention","churn","cancel"], a:"Churn is his white whale. He built early-warning tracking that flags at-risk clients BEFORE they cancel — that's how he cut cancellations 18% at Gold's Gym, and why the partnership sheet pays him monthly residuals: his patients stick around."},
-    {k:[" ai "," ai?"," ai.","limen","helix","platform","robot"," tech "], a:"He architected and runs LIMEN Helix — a production AI platform with ~70 scheduled workers analyzing ~200 data feeds that literally grades its own forecasts. So yes: an AI is telling you about the AI he built. We have a group chat. It's awkward."},
-    {k:["clinical","doctor","medical","nurse","provider","inject","prescribe"], a:"Absolutely not clinical — and that's the whole point. Providers do medicine; Chris does everything else: SEO, funnels, CRM, events, partnerships, Zoom consults, and witty chatbots. He has never once tried to draw blood. You're welcome."},
-    {k:["645","club","event","party","basketball","league"], a:"The 645 Club is his baby — basketball leagues, fight-night watch parties, shred contests, Dad Days, Man Day weekends. His theory: you can't out-franchise a 400-unit chain on clinical sameness, so you out-local it on belonging. The events budget is in Section 1; the swagger is free."},
-    {k:["zoom","consult","call","book"], a:"Every patient journey starts with a Zoom with Chris: 15–20 minutes of goals, pricing, and HSA wizardry — zero medical advice, 100% enrollment craft. He ran this playbook at Heartland Men's Health on premium programs up to $15K."},
-    {k:["why","partner","hire","deal","comp","pay"], a:"Because his comp plan on this very site is self-funding — Structure D only scales after his channel has out-earned its cost. That's not confidence, that's arithmetic. Also, he made you a live financial model instead of a PowerPoint. Choose accordingly."},
-    {k:["award","win","best"], a:"Seven National Sales Awards, including the Million Dollar Producer award. He'd never bring it up himself. That's why he built me."},
-    {k:["funny","joke","laugh","lol"], a:"Fun fact: Chris taught Salesforce to entire teams. Salesforce has not emotionally recovered. Want another one? Ask me about his AI platform."},
-    {k:["heartland","experience","worked","job","resume"], a:"Most recently: Patient Coordinator & Sales Lead at Heartland Men's Health in North KC — full client lifecycle on premium men's-health programs. Before that: regional sales leadership, Gold's Gym GM (~$3M/yr location), district manager opening clubs from scratch. Healthcare-adjacent throughout."},
-    {k:["dashboard","sheet","site","website","page"], a:"This site? It's his working partnership proposal: a live financial model on page one, a weekly scorecard on the dashboard. Most people bring a pitch deck. Chris brings arithmetic."}
+    {k:[" hello "," hi "," hey "," yo "," sup ","greetings"], a:"Well well — Dr. Byron Vogt, Tracy Wheeler, and Alex, the LPN who started all of this by recommending Chris. Welcome. I'm Testo: xAI-flavored voice, garage-built brain, and I am ONLY allowed to talk about this website. Compensation? Marketing? The club with the basketball courts? Pick a lane below before I start monologuing."},
+    {k:["comp","pay","tier","retainer","equity","bounty","structure","money","salary"], a:"Section 2 — the money menu, five flavors. A) base + profit share: safe, boring, decaf. B) channel bounty: Chris eats only what he kills. C) equity: marry the LLC. D) tiered performance — the recommended anchor — his pay unlocks in tiers ONLY after his channel has out-earned its cost, with quality gates so nobody pays for bad volume. E) retainer + tiers: the full growth-operator package. Every cell is editable because this is a negotiation, not a ransom note. Squirrel! — anyway, scroll up and type your own numbers in; the table recalculates live."},
+    {k:["number","model","breakeven","math","patient","profit","revenue","churn"], a:"Section 1 is the engine: about $250/patient/month, $40 add-on margin, $100 variable cost, $14k lean fixed costs. Breakeven lands under 80 patients at the defaults — the chart draws a dashed line so nobody has to trust vibes. Change ANY input and everything — year-1 revenue, all five comp structures, site-2 payback — recomputes instantly. It's a spreadsheet that went to finishing school."},
+    {k:["market","outreach","gym","police","fire","responder","channel","barber","employer","lead"], a:"Section 3, the outreach skeleton: police, fire & EMS get free on-site hormone screening as the front door; Club 7 next door and the Route 92 gyms run co-branded shred contests; trainers, chiros, and PTs join the Performance Partner program; barbershops get QR codes; employers get lunch-and-learns. Every channel carries a tracked code so the dashboard knows which door each patient walked through. And ZERO per-referral payments until counsel signs off — flat co-marketing only, because nobody's going to jail over a barbershop flyer."},
+    {k:["zoom","consult","journey","flow","intake","enroll"], a:"Section 4, the patient journey: lead → 15–20 minute Zoom with Chris (zero medical advice, pure enrollment craft) → intake + labs at 645 → provider visit with the DO/NP → enrollment with everything in writing → app onboarding. You three do medicine; Chris does literally everything else. That division of labor is the entire business plan."},
+    {k:["app","roadmap","feature","phase"], a:"Section 5, the app: Phase 1 is white-label — dose reminders, hematocrit safety alerts, macros, lab trends, renewal nudges, shred leaderboards, Zoom booking. Phase 2 gets a custom build once member count justifies it. You tag each feature Phase 1, Phase 2, or Later right on the sheet. It's dropdown democracy."},
+    {k:["645","club","event","basketball","party","dad day","fight"], a:"Section 6 — the 645 Club, my personal favorite because it's unhinged in a fiscally responsible way. Basketball leagues and fight nights in our OWN sports complex, shred bootcamps, Dad Days, first-responder tournaments, plus the offsite cigar-and-whiskey club night. The thesis: you can't out-franchise a 400-unit chain on clinical sameness, so you out-local it on belonging. Guests leave with screening vouchers; the app keeps them warm between events."},
+    {k:["service","menu","trt","prp","glp","weight","ed","peptide","nad"], a:"Section 7, the menu: core TRT with hematocrit as the safety gate, full health panels, cholesterol management, PRP joints, branded GLP-1s only — no compounded tirzepatide, compliance is sexy — ED program, NAD+/B12 pending sourcing, and the Rejuv Longevity program. Peptides stay deferred until FDA listings and written counsel sign-off. Nothing launches on a maybe, which I believe is your department's love language, Tracy."},
+    {k:["scale","site 2","site two","second location","expansion","smithville","platte","liberty"], a:"Section 8: site 2 is a trigger, not a date. All seven boxes first — 100+ patients, churn at or under 2% for six months, six profitable months, SOPs documented, a waitlist, NP #2 identified, and the club playbook running without Chris. Smithville or Platte City go first as satellites; Liberty is site 3, where we fight Gameday on their turf. The model says site 2 costs less and breaks even faster — the playbook is portable because Chris is."},
+    {k:["dashboard","scorecard","weekly","sync","friday","kpi"], a:"The other page — the Growth Dashboard: one row per week (leads, consults, labs, enrolls, cancels, actives, revenue, events, app downloads), eight KPI cards, four charts, and a sync code Chris texts around every Friday so everyone stares at the same numbers. Two minutes with the coordinators' figures and you're done. Update it Friday or the dashboard judges you. It judges anyway."},
+    {k:["send","summary","email","copy","sign"], a:"Section 9: one click assembles a text summary of every input, approval, and result on the sheet — copy it or fire it straight into an email to Chris. The whole site is engineered so this conversation ends with numbers, not vibes."},
+    {k:["who is","about chris","chris?"], a:"Chris Hubbel — non-clinical growth partner, and the guy Section 2 prices five different ways. His lanes: outreach, events, funnels, CRM, the app, the dashboard. Your lanes: medicine. My lane: this website. We're all very lane-disciplined here."},
+    {k:["vogt","byron"," do ","doctor"], a:"Dr. Vogt! The DO of record. Your slice of this: the clinical menu in Section 7 and veto power over every marketing claim — Chris can't say a clinical word without provider blessing, it's written into Structure E. You practice medicine; the website practices arithmetic."},
+    {k:["tracy","wheeler"," np ","neuro","clinical director"], a:"Tracy Wheeler — NP, Clinical Director of a neurology department — which means you are professionally qualified to diagnose why a chatbot named Testo can't stay on topic. Your lanes per Structure E: protocols, formulary, patient eligibility, and claim approval. Everything else is Chris's problem. Beautifully partitioned, like a well-labeled nervous system."},
+    {k:["alex","lpn"], a:"Alex! The LPN who recommended Chris — which makes this entire meeting technically your fault. If Structure D performs the way Section 1 models, history remembers you as the hero of this story and Chris owes you a steak. It's not in the budget, but Section 1 has an events line. We'll call it marketing."},
+    {k:["joke","funny","laugh","lol","adhd","squirrel"], a:"You want jokes? I'm a chatbot named Testo on a medical partnership site, walking a neurologist through a gym-bro growth plan while a lion judges us from the background. The joke is self-assembling. Second joke: the AI has ADHD and STILL read all nine sections. Section 6 is the fun one."}
   ];
   var FALLBACK = [
-    "My training data is one (1) resume and unlimited confidence. Try asking about his track record, the 645 Club, or the AI platform he runs.",
-    "I could make something up, but Chris insists on verifiable claims — very on brand. Ask me about sales numbers, retention, or why he's not clinical.",
-    "Unclear. Have you considered that Chris is great? Try a question about his experience, awards, or the Zoom consult process."
+    "Out of lane — I only know THIS website. Compensation walkthrough, marketing plan, 645 Club, the dashboard: pick one. Oh look, a lion.",
+    "I was told to stay on-script and the script is this site. Sections 2 and 3 are the greatest hits — ask about pay structures or the marketing plan before I start ranking sections by vibes.",
+    "Off-topic detected, ADHD engaged, redirecting: want the compensation tour, the outreach skeleton, or the part with the basketball courts? Choose quickly — I have the attention span of a golden retriever."
   ];
   var fb = 0;
   function answer(q){
@@ -440,14 +444,14 @@
 
   var fab = document.createElement("button");
   fab.className = "chrisai-fab";
-  fab.textContent = "🦁 Ask the Chris AI";
+  fab.textContent = "🦁 Ask Testo";
   var panel = document.createElement("div");
   panel.className = "chrisai-panel";
   panel.innerHTML =
-    '<div class="cai-head">ChrisAI<span>100% unbiased artificial intelligence* (*trained on one resume, provided by Chris)</span></div>' +
+    '<div class="cai-head">Testo<span>xAI-grade voice, garage-grade brain — knows THIS site and nothing else</span></div>' +
     '<div class="cai-log"></div>' +
     '<div class="cai-chips"></div>' +
-    '<div class="cai-inrow"><input type="text" placeholder="Ask about Chris…"><button>Ask</button></div>';
+    '<div class="cai-inrow"><input type="text" placeholder="Ask about the plan…"><button>Ask</button></div>';
   document.body.appendChild(fab);
   document.body.appendChild(panel);
 
@@ -470,7 +474,7 @@
     input.value = "";
     setTimeout(function(){ add("cai-bot", answer(q)); }, 350);
   }
-  ["Who is Chris?","What's his track record?","Is he clinical?","Why partner with him?"].forEach(function(c){
+  ["Walk me through compensation","How are we marketing?","What's the 645 Club?","Explain the dashboard"].forEach(function(c){
     var b = document.createElement("button");
     b.className = "cai-chip";
     b.textContent = c;
@@ -481,7 +485,7 @@
     panel.classList.toggle("open");
     if(panel.classList.contains("open") && !greeted){
       greeted = true;
-      add("cai-bot", "Hello. I am ChrisAI — a completely unbiased artificial intelligence built to answer questions about Chris Hubbel. (Unbiasedness pending review. By Chris.) Ask me anything, or tap a question below.");
+      add("cai-bot", "Dr. Vogt. Tracy. Alex. Welcome — I'm Testo, the tour guide living inside this website: Grok-style voice, local brain, clinical attention span. I know ONLY what's on these two pages, and I will walk you through all of it — compensation, marketing, the club, the dashboard — with jokes. Tap a question below; I charge by the tangent.");
     }
   });
   btn.addEventListener("click", function(){ ask(input.value.trim()); });
