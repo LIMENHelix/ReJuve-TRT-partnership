@@ -437,19 +437,22 @@
     "Off-topic detected, ADHD engaged, redirecting: want the compensation tour, the outreach skeleton, or the part with the basketball courts? Choose quickly — I have the attention span of a golden retriever."
   ];
   var JOKES = [
-    "A neurologist walks into a TRT clinic. The receptionist says, 'finally, a brain guy.' He says, 'actually, I'm a partner.' First time in history a neurologist has been the muscle.",
-    "Neurologists look at a brain and say 'I can fix that.' I look at a sales funnel the same way. Difference: my organ does what I tell it. Usually. Okay, rarely — ADHD, remember?",
-    "Tracy tests reflexes with a little rubber hammer. I test reflexes with a $100 lab-screening special. Mine converts better and nobody flinches.",
-    "What's the difference between a neurologist and a growth partner? One reads brain scans, the other reads dashboards. Both know exactly where the problem is. Neither can make the patient do the exercises.",
-    "Tracy has spent her career telling people 'it's all in your head.' At Rejuv it's all in your bloodwork. Progress, everybody.",
-    "The brain has 86 billion neurons. This proposal has 10 sections and one chatbot. Between us, Dr. Vogt, we're going to need all 86 billion and change.",
-    "It's a men's health clinic, so let's address the elephant in the room. The elephant is in Section 7 under 'ED program.' The elephant has follow-up adherence tracking.",
-    "Everyone giggles at the ED program until they see the add-on margin line in Section 1. Then nobody giggles. Then everybody invests.",
-    "TRT consults are awkward for exactly eleven minutes — right up until the first lab draw. Then suddenly everyone's a scientist. 'Just optimizing my levels.' Sure, champ.",
-    "A men's clinic with a basketball league is perfect: it's the only building where 'how's it hanging' is both a medical intake question and a scouting report.",
-    "Section 7 sells confidence three ways: hormones, PRP, and tadalafil. The last one doesn't need a marketing funnel. It needs a calendar.",
-    "People ask if the ED program is a hard sell. Honestly, it's the soft launch that worries me.",
-    "I was built to walk three medical professionals through a financial model, and instead I'm out here doing neurology and penis jokes. Somewhere, my training data is filing a complaint. Anyway — Section 6 has basketball."
+    "Tracy runs a neurology department, so she spends all day on things that won't fire. I sell the other thing that won't fire. Same conversation, different head.",
+    "Neurologists and I are in the same business: performance issues. Hers are above the belt. Mine come with better margins and a basketball league.",
+    "Tracy can map every neural pathway in the human body. Her patients only ever ask about one pathway. It runs south, and Section 7 has it covered.",
+    "The brain has 86 billion neurons, and every guy in the consult is using maybe twelve of them until the labs come back. Then suddenly he's a biochemist.",
+    "A neurologist, a DO, and an LPN walk into a TRT proposal. The neurologist checks reflexes, the DO checks the formulary, and the LPN already knows this works. Alex has the best diagnostic instincts in the room.",
+    "What's the difference between a neurologist and a sales guy? One stimulates responses for a living. The other has a medical license.",
+    "The ED program: because 'it happens to everyone' stops being comforting around the sixth time.",
+    "Tadalafil — for when the spirit is willing but the flesh has filed a grievance.",
+    "Every consult starts with 'I'm just curious, asking for a friend' and ends with 'so how fast does this work.' Eleven minutes. I've timed it.",
+    "'How's it hanging' is the only question that's both an intake form and a lie detector.",
+    "We track adherence on the ED program. Adherence. Somebody in product naming knew EXACTLY what they were doing, and Section 1's events budget owes them a steak.",
+    "People ask if the ED program is a hard sell. No — it's a soft launch. That's the whole addressable market.",
+    "Section 7 sells confidence three ways: hormones, PRP, and the little blue co-pilot. One of those sells itself and STILL has better retention than most gyms.",
+    "TRT: it turns 'I'm just tired' from a diagnosis back into an excuse.",
+    "Gameday spent their money on man-cave decor. We're spending ours on a club, a complex, and prescription-grade confidence. They brought leather chairs to a sword fight.",
+    "Forty bucks a month of add-on margin to give a man his swagger back — cheapest renovation in America. The alternative is a boat."
   ];
   var fb = 0, jk = 0;
   function answer(q){
@@ -493,7 +496,7 @@
       .replace(/~/g, "about ").replace(/·/g, ",").replace(/\//g, " ")
       .replace(/\s+/g, " ").trim();
   }
-  var XAI_VOICE_URL = "https://limenhelix.com/api/orb-voice?voice=leo&text=";
+  var XAI_VOICE_URL = "https://limenhelix.com/api/orb-voice?voice=zenith&text=";
   var xaiAudio = null;
   function stopVoice(){
     if("speechSynthesis" in window) speechSynthesis.cancel();
@@ -525,7 +528,7 @@
   var panel = document.createElement("div");
   panel.className = "chrisai-panel";
   panel.innerHTML =
-    '<div class="cai-head">Testo<span>real xAI Grok voice (leo), garage-grade brain — knows THIS site and nothing else</span><button class="cai-mute" title="Voice on/off">🔊</button></div>' +
+    '<div class="cai-head">Testo<span>real xAI Grok voice (zenith), garage-grade brain — knows THIS site and nothing else</span><button class="cai-mute" title="Voice on/off">🔊</button></div>' +
     '<div class="cai-log"></div>' +
     '<div class="cai-chips"></div>' +
     '<div class="cai-inrow"><input type="text" placeholder="Ask about the plan…"><button>Ask</button></div>';
